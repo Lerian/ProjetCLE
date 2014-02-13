@@ -1,4 +1,4 @@
 ProjetCLE
 =========
 
-Le projet de conception de logiciels extensibles, Mi ALMA université de Nantes.
+Le projet de conception de logiciels extensibles, M1 ALMA université de Nantes.
