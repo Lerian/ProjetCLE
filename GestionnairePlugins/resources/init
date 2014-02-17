@@ -1,0 +1,7 @@
+loadAtStart = 	truc1, \
+				truc2, \
+				truc3
+
+truc1 = simple
+truc2 = simple
+truc3 = simple
