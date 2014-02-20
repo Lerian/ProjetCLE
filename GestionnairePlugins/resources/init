@@ -1,7 +1,3 @@
-loadAtStart = 	truc1, \
-				truc2, \
-				truc3
+loadAtStart = 	armorEditor.ArmorEditor
 
-truc1 = simple
-truc2 = simple
-truc3 = simple
+armorEditor.ArmorEditor = simple
