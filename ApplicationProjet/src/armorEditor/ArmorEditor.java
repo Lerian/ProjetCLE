@@ -27,7 +27,7 @@ public class ArmorEditor implements IComplexPlugin {
 	}
 	@Override
 	public void receivePluginManager(IPluginManager pluginManager) {
-		System.out.println("Réception du plugin manager par l'éditeur d'armure");		
+		System.out.println("Réception du plugin manager par l'éditeur d'armure");	
 	}
 
 }
