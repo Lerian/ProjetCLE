@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Properties;
 
-import interfaces.IComplexPlugin;
 import interfaces.IPlugin;
 import interfaces.IPluginManager;
 
@@ -16,7 +13,7 @@ public class PluginManager implements IPluginManager {
 	
 	private static ClassLoader pluginClassLoader;
 	
-	public PluginManager() {
+	public static void main(String[] args) {
 		// Lecture du fichier de conf indiquant les plugins à lancer
 			// lancement des plugins "simples"
 			// lancement des plugins "compliqués" (référence au PluginManager nécessaire)
@@ -24,7 +21,7 @@ public class PluginManager implements IPluginManager {
 		try {
 			File file = new File("resources/pluginClasses/"); 
 			URL url = file.toURI().toURL(); 
-			URL[] urls = new URL[]{url};
+			URL[] urls = new URL[]{url}; 
 			pluginClassLoader = new URLClassLoader(urls);	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,7 +30,7 @@ public class PluginManager implements IPluginManager {
 	}
 	
 	// Lit le fichier donné et le traite
-	private void readConfigFile(String filename) {
+	private static void readConfigFile(String filename) {
 		// Chargement du fichier
 		Properties prop = new Properties();
 		try {
@@ -47,15 +44,15 @@ public class PluginManager implements IPluginManager {
 		
 		if(pluginsToLoad.length > 0) {
 			for(String s : pluginsToLoad) {
-				List<String> argsArray = Arrays.asList(prop.getProperty(s).split("\\s*,\\s*"));
+				String[] argsForPlugin = prop.getProperty(s).split("\\s*,\\s*");
 				
-				loadPlugin(s,argsArray);
+				loadPlugin(s,argsForPlugin);
 			}
 		}
 	}
 	
 	// Charge un plugin donné selon les arguments donnés
-	private void loadPlugin(String pluginName, List<String> args) {
+	private static void loadPlugin(String pluginName, String[] args) {
 		try {	
 			System.out.println("Chargement de "+pluginName);
 			for(String s: args) {
@@ -63,12 +60,7 @@ public class PluginManager implements IPluginManager {
 			}
 			Class<?> pluginToLoad = Class.forName(pluginName,false,pluginClassLoader);
 			if(IPlugin.class.isAssignableFrom(pluginToLoad)) {
-				if(IComplexPlugin.class.isAssignableFrom(pluginToLoad)) {
-					IComplexPlugin plugin = (IComplexPlugin) pluginToLoad.newInstance();
-					plugin.receivePluginManager(this);			
-				} else {
-					pluginToLoad.newInstance();
-				}
+				pluginToLoad.newInstance();
 			} else {
 				System.out.println("Erreur d'interface");
 			}

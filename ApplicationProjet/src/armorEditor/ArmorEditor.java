@@ -3,10 +3,10 @@ package armorEditor;
 import java.util.ArrayList;
 
 import armor.*;
-import interfaces.IComplexPlugin;
-import interfaces.IPluginManager;
 
-public class ArmorEditor implements IComplexPlugin {
+import interfaces.IPlugin;
+
+public class ArmorEditor implements IPlugin {
 
 	private ArrayList<Armor> armors;
 	
@@ -24,10 +24,6 @@ public class ArmorEditor implements IComplexPlugin {
 	public void run() {
 		// TODO Auto-generated method stub
 		
-	}
-	@Override
-	public void receivePluginManager(IPluginManager pluginManager) {
-		System.out.println("Réception du plugin manager par l'éditeur d'armure");		
 	}
 
 }
