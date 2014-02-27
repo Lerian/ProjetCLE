@@ -19,6 +19,15 @@ public class Createur implements IPlugin, ICreateur{
 		Armor nouvelleArmure = new Armor();
 		nouvelleArmure.setName(nomArmure);
 		
+		//Ajout energie de base
+		Energy baseEnergy = new Energy();
+		baseEnergy.setName("powerNRG");
+		baseEnergy.setValue(42);
+		
+		//Ajout équipement basique
+		
+		nouvelleArmure.setEnergyAvailable(baseEnergy);
+		
 		return nouvelleArmure;
 	}
 

@@ -4,6 +4,7 @@ public class Equipement {
 	String name;
 	Energy energyNeeded;
 	Position pos;
+	
     public String getName() {
         return name;
     }
@@ -22,4 +23,10 @@ public class Equipement {
     public void setPos(Position pos) {
         this.pos = pos;
     }
+    
+	@Override
+	public String toString() {
+		return "Equipement [name=" + name + ", energyNeeded=" + energyNeeded
+				+ ", pos=" + pos + "]";
+	}
 }
