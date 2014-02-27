@@ -55,8 +55,10 @@ public class PluginManager implements IPluginManager {
 	}
 	
 	// Charge un plugin donné selon les arguments donnés
-	private void loadPlugin(String pluginName, List<String> args) {
-		try {	
+	public IPlugin loadPlugin(String pluginName, List<String> args) {
+		IPlugin res = null;
+		
+		try {
 			System.out.println("Chargement de "+pluginName);
 			for(String s: args) {
 				System.out.println("arg: "+s);
@@ -64,10 +66,11 @@ public class PluginManager implements IPluginManager {
 			Class<?> pluginToLoad = Class.forName(pluginName,false,pluginClassLoader);
 			if(IPlugin.class.isAssignableFrom(pluginToLoad)) {
 				if(IComplexPlugin.class.isAssignableFrom(pluginToLoad)) {
-					IComplexPlugin plugin = (IComplexPlugin) pluginToLoad.newInstance();
-					plugin.receivePluginManager(this);			
+					res = (IComplexPlugin) pluginToLoad.newInstance();
+					((IComplexPlugin)res).receivePluginManager(this);
+					res.run();		
 				} else {
-					pluginToLoad.newInstance();
+					res = (IPlugin) pluginToLoad.newInstance();
 				}
 			} else {
 				System.out.println("Erreur d'interface");
@@ -75,5 +78,7 @@ public class PluginManager implements IPluginManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return res;
 	}
 }

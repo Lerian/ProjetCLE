@@ -1,5 +1,7 @@
 package interfaces;
 
-public interface IPluginManager {
+import java.util.List;
 
+public interface IPluginManager {
+	public IPlugin loadPlugin(String pluginName, List<String> args);
 }
