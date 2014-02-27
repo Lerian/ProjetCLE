@@ -5,7 +5,15 @@ public class Equipement {
 	Energy energyNeeded;
 	Position pos;
 	
-    public String getName() {
+    public Equipement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Equipement(String name) {
+		super();
+		this.name = name;
+	}
+	public String getName() {
         return name;
     }
     public void setName(String name) {

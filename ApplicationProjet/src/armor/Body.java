@@ -4,6 +4,10 @@ public class Body extends Equipement {
 	String color;
 	int protection;
 	
+	public Body(String name) {
+		super(name);
+		
+	}
 	public String getColor() {
 		return color;
 	}
@@ -16,6 +20,7 @@ public class Body extends Equipement {
 	public void setProtection(int protection) {
 		this.protection = protection;
 	}
+	
 	@Override
 	public String toString() {
 		return "Body [color=" + color + ", protection=" + protection + "]";
