@@ -1,5 +1,7 @@
 package armor;
 
+import interfaces.IArmor;
+
 import java.util.List;
 
 public class Armor implements IArmor {

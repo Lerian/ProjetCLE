@@ -1,6 +1,9 @@
-package armor;
+package interfaces;
 
 import java.util.List;
+
+import armor.Energy;
+import armor.Equipement;
 
 public interface IArmor {
 
