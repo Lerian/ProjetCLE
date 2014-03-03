@@ -9,7 +9,7 @@ import interfaces.IPluginManager;
 
 public class ArmorEditor implements IComplexPlugin {
 
-	private ArrayList<Armor> armors;
+	private ArrayList<Armor> armors = new ArrayList<Armor>();
 	private IPluginManager pluginLoader;
 	private IAfficheur pluginAfficheur;
 	
@@ -27,7 +27,8 @@ public class ArmorEditor implements IComplexPlugin {
 	public void run() {
 		// TODO Auto-generated method stub
 		pluginAfficheur = loadAfficheur();
-		//pluginAfficheur.affiche(armors.get(0));
+		loadData();
+		pluginAfficheur.affiche(armors.get(armors.size()-1));
 	}
 	
 	@Override

@@ -14,6 +14,6 @@ public class Afficheur implements IPlugin, IAfficheur {
 	@Override
 	public void affiche(Armor armure) {
 		// TODO Auto-generated method stub
-		armure.toString();
+		System.out.println(armure.toString());
 	}
 }
