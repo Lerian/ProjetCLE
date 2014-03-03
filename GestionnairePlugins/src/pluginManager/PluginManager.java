@@ -1,9 +1,7 @@
 package pluginManager;
 
-import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -14,7 +12,7 @@ import interfaces.IPluginManager;
 
 public class PluginManager implements IPluginManager {
 	
-	private static ClassLoader pluginClassLoader;
+	private ConfigurableURLClassLoader pluginClassLoader;
 	
 	public PluginManager() {
 		// Lecture du fichier de conf indiquant les plugins à lancer
@@ -22,10 +20,8 @@ public class PluginManager implements IPluginManager {
 			// lancement des plugins "compliqués" (référence au PluginManager nécessaire)
 		// Création d'un classloader pour les plugins
 		try {
-			File file = new File("resources/pluginClasses/"); 
-			URL url = file.toURI().toURL(); 
-			URL[] urls = new URL[]{url};
-			pluginClassLoader = new URLClassLoader(urls);	
+			URL[] urls = new URL[]{};
+			pluginClassLoader = new ConfigurableURLClassLoader(urls);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -44,6 +40,11 @@ public class PluginManager implements IPluginManager {
 		
 		// Traitement des données chargées
 		String[] pluginsToLoad = prop.getProperty("loadAtStart").split("\\s*,\\s*");
+		String[] pathsToUse = prop.getProperty("binPaths").split("\\s*,\\s*");
+		
+		for(String s: pathsToUse) {
+			pluginClassLoader.addURL(s);
+		}
 		
 		if(pluginsToLoad.length > 0) {
 			for(String s : pluginsToLoad) {
