@@ -1,6 +1,6 @@
 package main;
 
-import pluginManager.PluginManager;;
+import pluginManager.PluginManager;
 
 public class PluginsPlatform {
 

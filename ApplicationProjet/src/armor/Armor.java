@@ -2,6 +2,7 @@ package armor;
 
 import interfaces.IArmor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Armor implements IArmor {
@@ -36,6 +37,17 @@ public class Armor implements IArmor {
 	public Energy getEnergyAvailable() {
 		return energyAvailable;
 	}
+	public boolean add(Equipement arg0) {
+		if(equipements ==  null){
+			equipements = new ArrayList<Equipement>();
+		}
+		return equipements.add(arg0);
+	}
+
+	public boolean remove(Object arg0) {
+		return equipements.remove(arg0);
+	}
+
 	/* (non-Javadoc)
 	 * @see armor.IArmor#setEnergyAvailable(armor.Energy)
 	 */

@@ -1,3 +1,4 @@
 loadAtStart = 	armorEditor.ArmorEditor
+binPaths = resources/pluginClasses/
 
 armorEditor.ArmorEditor = simple
