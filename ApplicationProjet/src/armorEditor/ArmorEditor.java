@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import armor.*;
 import interfaces.IAfficheur;
 import interfaces.IComplexPlugin;
+import interfaces.ICreateur;
 import interfaces.IPluginManager;
 
 public class ArmorEditor implements IComplexPlugin {
@@ -12,6 +13,7 @@ public class ArmorEditor implements IComplexPlugin {
 	private ArrayList<Armor> armors = new ArrayList<Armor>();
 	private IPluginManager pluginLoader;
 	private IAfficheur pluginAfficheur;
+	private ICreateur pluginCreateur;
 	
 	public ArmorEditor() {
 		System.out.println("Lancement de l'éditeur d'armure");
@@ -20,13 +22,14 @@ public class ArmorEditor implements IComplexPlugin {
 	
 	public void loadData() {
 		// TODO passer via un plugin
-		armors.add(new Armor());
+		armors.add(pluginCreateur.cree("ArmureTest"));
 	}
 	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		pluginAfficheur = loadAfficheur();
+		pluginCreateur = loadCreateur();
 		loadData();
 		pluginAfficheur.affiche(armors.get(armors.size()-1));
 	}
@@ -41,5 +44,11 @@ public class ArmorEditor implements IComplexPlugin {
 		args.add("simple");
 		return (IAfficheur) pluginLoader.loadPlugin("affichageConsole.Afficheur", args);
 	}
+	
+	public ICreateur loadCreateur() {
+		ArrayList<String> args = new ArrayList<String>();
+		args.add("simple");
+		return (ICreateur) pluginLoader.loadPlugin("creationArmure.Createur", args);
+	}	
 
 }
