@@ -2,8 +2,10 @@ package interfaces;
 
 import java.util.List;
 
+import armor.Body;
 import armor.Energy;
 import armor.Equipement;
+import armor.Weapon;
 
 public interface IArmor {
 
@@ -16,5 +18,9 @@ public interface IArmor {
 	public abstract void setEnergyAvailable(Energy energyAvailable);
 
 	public abstract List<Equipement> getEquipements();
+	
+	public abstract List<Body> getBodies();
+	
+	public abstract List<Weapon> getWeapons();
 
 }
