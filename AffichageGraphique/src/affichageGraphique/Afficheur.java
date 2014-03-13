@@ -1,7 +1,9 @@
 package affichageGraphique;
 
+import java.awt.Color;
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 
 import interfaces.IAfficheur;
 import interfaces.IPlugin;
@@ -16,7 +18,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 
 import armor.Armor;
+import armor.Body;
 import armor.Equipement;
+import armor.Position;
 
 public class Afficheur implements IPlugin, IAfficheur {
 
@@ -25,50 +29,30 @@ public class Afficheur implements IPlugin, IAfficheur {
         JFrame frame = new JFrame(armure.getName());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        JTextArea taHead = new JTextArea();
-        taHead.setEditable(false);
-        JTextArea taRHand = new JTextArea();
-        taRHand.setEditable(false);
-        JTextArea taLHand = new JTextArea();
-        taLHand.setEditable(false);
-        JTextArea taRArm = new JTextArea();
-        taRArm.setEditable(false);
-        JTextArea taLArm = new JTextArea();
-        taLArm.setEditable(false);
-        JTextArea taRLeg = new JTextArea();
-        taRLeg.setEditable(false);
-        JTextArea taLLeg = new JTextArea();
-        taLLeg.setEditable(false);
-        JTextArea taBody = new JTextArea();
-        taBody.setEditable(false);
+        JLabel lHead = new JLabel("<html><center>Head :</center>",JLabel.CENTER);
+        JLabel lRHand = new JLabel("<html><center>Right Hand :</center>",JLabel.CENTER);
+        JLabel lLHand = new JLabel("<html><center>Left Hand :</center>",JLabel.CENTER);
+        JLabel lRArm = new JLabel("<html><center>Right Arm :</center>",JLabel.CENTER);
+        JLabel lLArm = new JLabel("<html><center>Left Arm :</center>",JLabel.CENTER);
+        JLabel lRLeg = new JLabel("<html><center>Right Leg :</center>",JLabel.CENTER);
+        JLabel lLLeg = new JLabel("<html><center>Left Leg :</center>",JLabel.CENTER);
+        JLabel lBody = new JLabel("<html><center>Body :</center>",JLabel.CENTER);
+        
+        HashMap<Position, JLabel> equiPos = new HashMap<Position,JLabel>();
+        equiPos.put(Position.HEAD, lHead);
+        equiPos.put(Position.RHAND, lRHand);
+        equiPos.put(Position.LHAND, lLHand);
+        equiPos.put(Position.RARM, lRArm);
+        equiPos.put(Position.LARM, lLArm);
+        equiPos.put(Position.RLEG, lRLeg);
+        equiPos.put(Position.LLEG, lLLeg);
+        equiPos.put(Position.BODY, lBody);
+        
         
         for(Equipement equi : armure.getEquipements()){
-            switch (equi.getPos()){
-                case HEAD :
-                    taHead.append(equi.toString());
-                break;
-                case RHAND :
-                    taRHand.append(equi.toString());
-                break;
-                case LHAND :
-                    taLHand.append(equi.toString());
-                break;
-                case RARM :
-                    taRArm.append(equi.toString());
-                break;
-                case LARM :
-                    taLArm.append(equi.toString());
-                break;
-                case RLEG :
-                    taRLeg.append(equi.toString());
-                break;
-                case LLEG :
-                    taLLeg.append(equi.toString());
-                break;
-                case BODY :
-                    taBody.append(equi.toString());
-                break;
-            }
+            JLabel temp = equiPos.get(equi.getPos());
+            temp.setText(temp.getText()+"<br>"+equi.toString());
+            temp.setOpaque(true);
         }
         
         JPanel panel = new JPanel();
@@ -77,18 +61,18 @@ public class Afficheur implements IPlugin, IAfficheur {
         Box box2 = new Box(BoxLayout.Y_AXIS);
         Box box3 = new Box(BoxLayout.Y_AXIS);
         
-        box1.add(new JLabel("Head :"));
-        box1.add(taHead);
         box1.add(new JSeparator());
-        box1.add(new JLabel("Right Arm :"));
-        box1.add(taRArm);
+        box1.add(lHead);
         box1.add(new JSeparator());
-        box1.add(new JLabel("Right Hand :"));
-        box1.add(taRHand);
+        box1.add(lRArm);
         box1.add(new JSeparator());
-        box1.add(new JLabel("Right Leg :"));
-        box1.add(taRLeg);
+        box1.add(lRHand);
+        box1.add(new JSeparator());
+        box1.add(lRLeg);
         
+        
+        box2.add(new JLabel("<html><center>"+armure.getName()+"</center></html>", JLabel.CENTER));
+        box2.add(new JSeparator());
         JLabel lab;
         try {
             lab = new JLabel(new ImageIcon(new File("resources/tech_clone_armure2_02.png").toURI().toURL()));
@@ -97,19 +81,17 @@ public class Afficheur implements IPlugin, IAfficheur {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        box2.add(new JLabel("Energy : type ["+armure.getEnergyAvailable().getName()+"] "+armure.getEnergyAvailable().getValue()+" remaining"));
+        box2.add(new JSeparator());
+        box2.add(new JLabel("<html><center>Energy : type ["+armure.getEnergyAvailable().getName()+"] "+armure.getEnergyAvailable().getValue()+" remaining</center></html>",JLabel.CENTER));
         
-        box3.add(new JLabel("Body :"));
-        box3.add(taBody);
         box3.add(new JSeparator());
-        box3.add(new JLabel("Left Arm :"));
-        box3.add(taLArm);
+        box3.add(lBody);
         box3.add(new JSeparator());
-        box3.add(new JLabel("Left Hand :"));
-        box3.add(taLHand);
+        box3.add(lLArm);
         box3.add(new JSeparator());
-        box3.add(new JLabel("Left Leg :"));
-        box3.add(taLLeg);
+        box3.add(lLHand);
+        box3.add(new JSeparator());
+        box3.add(lLLeg);
         
         panel.add(box1);
         panel.add(box2);
