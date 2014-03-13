@@ -66,7 +66,7 @@ public class Armor implements IArmor {
 	@Override
 	public List<Body> getBodies() {
 
-		List<Body> bodies = null;
+		List<Body> bodies = new ArrayList<Body>();
 		for(Equipement e : equipements){
 			if (Body.class.isAssignableFrom(e.getClass())){
 				bodies.add((Body) e);
@@ -78,13 +78,13 @@ public class Armor implements IArmor {
 	@Override
 	public List<Weapon> getWeapons() {
 		// TODO Auto-generated method stub
-		List<Weapon> weapons = null;
+		List<Weapon> weapons = new ArrayList<Weapon>();
 		for(Equipement e : equipements){
 			if(Weapon.class.isAssignableFrom(e.getClass())){
 				weapons.add((Weapon) e);
 			}
 		}
-		return null;
+		return weapons;
 	}
 	
 	
