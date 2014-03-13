@@ -26,13 +26,21 @@ public class Afficheur implements IPlugin, IAfficheur {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         JTextArea taHead = new JTextArea();
+        taHead.setEditable(false);
         JTextArea taRHand = new JTextArea();
+        taRHand.setEditable(false);
         JTextArea taLHand = new JTextArea();
+        taLHand.setEditable(false);
         JTextArea taRArm = new JTextArea();
+        taRArm.setEditable(false);
         JTextArea taLArm = new JTextArea();
+        taLArm.setEditable(false);
         JTextArea taRLeg = new JTextArea();
+        taRLeg.setEditable(false);
         JTextArea taLLeg = new JTextArea();
+        taLLeg.setEditable(false);
         JTextArea taBody = new JTextArea();
+        taBody.setEditable(false);
         
         for(Equipement equi : armure.getEquipements()){
             switch (equi.getPos()){
@@ -68,45 +76,44 @@ public class Afficheur implements IPlugin, IAfficheur {
         Box box1 = new Box(BoxLayout.Y_AXIS);
         Box box2 = new Box(BoxLayout.Y_AXIS);
         Box box3 = new Box(BoxLayout.Y_AXIS);
-        Box box4 = new Box(BoxLayout.Y_AXIS);
-        Box box5 = new Box(BoxLayout.Y_AXIS);
         
+        box1.add(new JLabel("Head :"));
         box1.add(taHead);
         box1.add(new JSeparator());
+        box1.add(new JLabel("Right Arm :"));
         box1.add(taRArm);
         box1.add(new JSeparator());
+        box1.add(new JLabel("Right Hand :"));
         box1.add(taRHand);
         box1.add(new JSeparator());
+        box1.add(new JLabel("Right Leg :"));
         box1.add(taRLeg);
         
-        box2.add(new JSeparator());
         JLabel lab;
-        
         try {
             lab = new JLabel(new ImageIcon(new File("resources/tech_clone_armure2_02.png").toURI().toURL()));
             lab.setBounds(0, 0, 200, 200);
-            box3.add(lab);
+            box2.add(lab);
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        box2.add(new JLabel("Energy : type ["+armure.getEnergyAvailable().getName()+"] "+armure.getEnergyAvailable().getValue()+" remaining"));
         
-        box4.add(new JSeparator());
-        
-        box5.add(taBody);
-        box5.add(new JSeparator());
-        box5.add(taLArm);
-        box5.add(new JSeparator());
-        box5.add(taLHand);
-        box5.add(new JSeparator());
-        box5.add(taLLeg);
+        box3.add(new JLabel("Body :"));
+        box3.add(taBody);
+        box3.add(new JSeparator());
+        box3.add(new JLabel("Left Arm :"));
+        box3.add(taLArm);
+        box3.add(new JSeparator());
+        box3.add(new JLabel("Left Hand :"));
+        box3.add(taLHand);
+        box3.add(new JSeparator());
+        box3.add(new JLabel("Left Leg :"));
+        box3.add(taLLeg);
         
         panel.add(box1);
         panel.add(box2);
         panel.add(box3);
-        panel.add(box4);
-        panel.add(box5);
-        //TODO mise en forme des données lors de l'affichage.
         
         frame.setContentPane(panel);
         frame.pack();
