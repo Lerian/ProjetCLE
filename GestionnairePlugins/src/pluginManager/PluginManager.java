@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -24,12 +23,6 @@ public class PluginManager implements IPluginManager {
 			// lancement des plugins "simples"
 			// lancement des plugins "compliqués" (référence au PluginManager nécessaire)
 		// Création d'un classloader pour les plugins
-		/*try {
-			URL[] urls = new URL[]{};
-			pluginClassLoader = new ConfigurableURLClassLoader(urls);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
 		readConfigFile("resources/init");
 	}
 	
@@ -46,14 +39,31 @@ public class PluginManager implements IPluginManager {
 		// Traitement des données chargées
 		String[] pluginsToLoad = prop.getProperty("loadAtStart").split("\\s*,\\s*");
 		String[] pathsToUse = prop.getProperty("binPaths").split("\\s*,\\s*");
-		String pathToHome = prop.getProperty("homePath");
+		String[] pathsToHome = prop.getProperty("homePath").split("\\s*,\\s*");
 		
 		URL[] urls = new URL[pathsToUse.length];
+		String rightPathToHome = "";
 		int i = 0;
+		
+		for(String s: pathsToHome) {
+			if(!s.startsWith("/")) {
+				if(new File(System.getProperty("user.home")+"/"+s).exists()) {
+					rightPathToHome = s;
+				}
+			} else {
+				if(new File(s).exists()) {
+					rightPathToHome = s;
+				}
+			}
+		}
+		
 		for(String s: pathsToUse) {
-			//pluginClassLoader.addURL(s);
 			try {
-				urls[i] = (new File(pathToHome+s)).toURI().toURL();
+				if(!s.startsWith("/")) {
+					urls[i] = (new File(System.getProperty("user.home")+"/"+rightPathToHome+s)).toURI().toURL();
+				} else {
+					urls[i] = (new File(rightPathToHome+s)).toURI().toURL();
+				}
 				System.out.println(urls[i].toExternalForm());
 				i++;
 			} catch (MalformedURLException e) {
