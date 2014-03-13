@@ -1,4 +1,11 @@
 loadAtStart = 	armorEditor.ArmorEditor
-binPaths = resources/pluginClasses/
 
+homePath = /home/vincent/workspace/ProjetCLE/
+
+binPaths = ApplicationProjet/bin/ , \
+			AffichageConsole/bin/, \
+			AffichageGraphique/bin/, \
+			CreationArmure/bin/, \
+			ModificationArmure/bin/
+			
 armorEditor.ArmorEditor = simple

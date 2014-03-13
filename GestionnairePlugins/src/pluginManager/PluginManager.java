@@ -1,7 +1,11 @@
 package pluginManager;
 
+import java.io.File;
 import java.io.FileReader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -12,19 +16,20 @@ import interfaces.IPluginManager;
 
 public class PluginManager implements IPluginManager {
 	
-	private ConfigurableURLClassLoader pluginClassLoader;
+	//private ConfigurableURLClassLoader pluginClassLoader;
+	private URLClassLoader pluginClassLoader;
 	
 	public PluginManager() {
 		// Lecture du fichier de conf indiquant les plugins à lancer
 			// lancement des plugins "simples"
 			// lancement des plugins "compliqués" (référence au PluginManager nécessaire)
 		// Création d'un classloader pour les plugins
-		try {
+		/*try {
 			URL[] urls = new URL[]{};
 			pluginClassLoader = new ConfigurableURLClassLoader(urls);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		readConfigFile("resources/init");
 	}
 	
@@ -41,10 +46,21 @@ public class PluginManager implements IPluginManager {
 		// Traitement des données chargées
 		String[] pluginsToLoad = prop.getProperty("loadAtStart").split("\\s*,\\s*");
 		String[] pathsToUse = prop.getProperty("binPaths").split("\\s*,\\s*");
+		String pathToHome = prop.getProperty("homePath");
 		
+		URL[] urls = new URL[pathsToUse.length];
+		int i = 0;
 		for(String s: pathsToUse) {
-			pluginClassLoader.addURL(s);
+			//pluginClassLoader.addURL(s);
+			try {
+				urls[i] = (new File(pathToHome+s)).toURI().toURL();
+				System.out.println(urls[i].toExternalForm());
+				i++;
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
 		}
+		pluginClassLoader = new URLClassLoader(urls);
 		
 		if(pluginsToLoad.length > 0) {
 			for(String s : pluginsToLoad) {
