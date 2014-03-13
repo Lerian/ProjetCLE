@@ -3,5 +3,5 @@ package interfaces;
 import armor.Armor;
 
 public interface ICreateur {
-	public Armor cree(String nomArmure);
+	public abstract Armor cree(String nomArmure);
 }

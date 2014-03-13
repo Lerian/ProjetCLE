@@ -9,21 +9,21 @@ import armor.Weapon;
 
 public interface IModificateur {
 	//Modification de l'armure (Armor)
-	public void modifieNomArmure(Armor armure, String nomArmure);
+	public abstract void modifieNomArmure(Armor armure, String nomArmure);
 	
 	//Modification de l'énergie (Energy)
-	public void modifieNomEnergie(Energy energie, String nomEnergie);
-	public void modifieValEnergie(Energy energie, int valeurEnergie);
+	public abstract void modifieNomEnergie(Energy energie, String nomEnergie);
+	public abstract void modifieValEnergie(Energy energie, int valeurEnergie);
 	
 	//Modification de l'équipement (Equipement, Body, Weapon)
-	public void modifieNomEquipement(Equipement equipement, String nomEquipement);
-	public void modifieEnergieEquipement(Equipement equipement, Energy energie);
-	public void mofifiePosEquipement(Equipement equipement, Position position); //codée mais inutile, on ne met pas un casque sur un pied
+	public abstract void modifieNomEquipement(Equipement equipement, String nomEquipement);
+	public abstract void modifieEnergieEquipement(Equipement equipement, Energy energie);
+	public abstract void mofifiePosEquipement(Equipement equipement, Position position); //codée mais inutile, on ne met pas un casque sur un pied
 	
 	//Modification de l'équipement du corps (Body)
-	public void modifieColorBody(Body body, String couleur);
-	public void modifieProtectBody(Body body, int protection);
+	public abstract void modifieColorBody(Body body, String couleur);
+	public abstract void modifieProtectBody(Body body, int protection);
 	
 	//Modification de l'équipement arme (Weapon)
-	public void modifieDamageWeapon(Weapon weapon, int damage);
+	public abstract void modifieDamageWeapon(Weapon weapon, int damage);
 }
