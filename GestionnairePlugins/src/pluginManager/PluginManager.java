@@ -48,7 +48,7 @@ public class PluginManager implements IPluginManager {
 		for(String s: pathsToHome) {
 			if(!s.startsWith("/")) {
 				if(new File(System.getProperty("user.home")+"/"+s).exists()) {
-					rightPathToHome = s;
+					rightPathToHome = System.getProperty("user.home")+"/"+s;
 				}
 			} else {
 				if(new File(s).exists()) {
@@ -59,11 +59,7 @@ public class PluginManager implements IPluginManager {
 		
 		for(String s: pathsToUse) {
 			try {
-				if(!s.startsWith("/")) {
-					urls[i] = (new File(System.getProperty("user.home")+"/"+rightPathToHome+s)).toURI().toURL();
-				} else {
-					urls[i] = (new File(rightPathToHome+s)).toURI().toURL();
-				}
+				urls[i] = (new File(rightPathToHome+s)).toURI().toURL();
 				System.out.println(urls[i].toExternalForm());
 				i++;
 			} catch (MalformedURLException e) {
