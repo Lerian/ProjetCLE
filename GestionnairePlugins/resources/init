@@ -1,8 +1,8 @@
 loadAtStart = 	armorEditor.ArmorEditor
 
 homePath = workspace/ProjetCLE/, \
-			/comptes/E137286Z/coursm1/CLE/ProjetCLE/, \
-			/comptes/E094180M/git/ProjetCLE/
+			coursm1/CLE/ProjetCLE/, \
+			git/ProjetCLE/
 
 binPaths = ApplicationProjet/bin/ , \
 			AffichageConsole/bin/, \
