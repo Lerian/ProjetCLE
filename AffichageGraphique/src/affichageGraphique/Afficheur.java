@@ -15,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
 
 import armor.Armor;
 import armor.Body;
@@ -38,21 +37,56 @@ public class Afficheur implements IPlugin, IAfficheur {
         JLabel lLLeg = new JLabel("<html><center>Left Leg :</center>",JLabel.CENTER);
         JLabel lBody = new JLabel("<html><center>Body :</center>",JLabel.CENTER);
         
-        HashMap<Position, JLabel> equiPos = new HashMap<Position,JLabel>();
-        equiPos.put(Position.HEAD, lHead);
-        equiPos.put(Position.RHAND, lRHand);
-        equiPos.put(Position.LHAND, lLHand);
-        equiPos.put(Position.RARM, lRArm);
-        equiPos.put(Position.LARM, lLArm);
-        equiPos.put(Position.RLEG, lRLeg);
-        equiPos.put(Position.LLEG, lLLeg);
-        equiPos.put(Position.BODY, lBody);
+        HashMap<String, Color> colorMatch = new HashMap<String,Color>();
+        colorMatch.put("violet", new Color(127, 0, 255));
+        colorMatch.put("rose", Color.pink);
+        colorMatch.put("cyan", Color.cyan);
+        colorMatch.put("jaune", Color.yellow);
+        colorMatch.put("vert", Color.green);
+        colorMatch.put("bleu", Color.blue);
+        colorMatch.put("Orange", Color.orange);
         
         
         for(Equipement equi : armure.getEquipements()){
-            JLabel temp = equiPos.get(equi.getPos());
-            temp.setText(temp.getText()+"<br>"+equi.toString());
-            temp.setOpaque(true);
+            switch (equi.getPos())
+            {
+                case HEAD:
+                    lHead.setText(lHead.getText()+"<br>"+equi.toString());
+                    lHead.setOpaque(true);
+                    lHead.setBackground(colorMatch.get(((Body)equi).getColor()));
+                break;
+                case RHAND:
+                    lRHand.setText(lRHand.getText()+"<br>"+equi.toString());
+                break;
+                case LHAND:
+                    lLHand.setText(lLHand.getText()+"<br>"+equi.toString());
+                break;
+                case RARM:
+                    lRArm.setText(lRArm.getText()+"<br>"+equi.toString());
+                    lRArm.setOpaque(true);
+                    lRArm.setBackground(colorMatch.get(((Body)equi).getColor()));
+                break;
+                case LARM:
+                    lLArm.setText(lLArm.getText()+"<br>"+equi.toString());
+                    lLArm.setOpaque(true);
+                    lLArm.setBackground(colorMatch.get(((Body)equi).getColor()));
+                break;
+                case RLEG:
+                    lRLeg.setText(lRLeg.getText()+"<br>"+equi.toString());
+                    lRLeg.setOpaque(true);
+                    lRLeg.setBackground(colorMatch.get(((Body)equi).getColor()));
+                break;
+                case LLEG:
+                    lLLeg.setText(lLLeg.getText()+"<br>"+equi.toString());
+                    lLLeg.setOpaque(true);
+                    lLLeg.setBackground(colorMatch.get(((Body)equi).getColor()));
+                break;
+                case BODY:
+                    lBody.setText(lBody.getText()+"<br>"+equi.toString());
+                    lBody.setOpaque(true);
+                    lBody.setBackground(colorMatch.get(((Body)equi).getColor()));
+                break;
+            }
         }
         
         JPanel panel = new JPanel();
