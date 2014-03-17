@@ -16,6 +16,10 @@ public interface IArmor {
 	public abstract Energy getEnergyAvailable();
 
 	public abstract void setEnergyAvailable(Energy energyAvailable);
+	
+	public abstract String getImage();
+	
+	public abstract void setImage(String image);
 
 	public abstract List<Equipement> getEquipements();
 	

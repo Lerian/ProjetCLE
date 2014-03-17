@@ -9,6 +9,7 @@ public class Armor implements IArmor {
 	String name;
 	Energy energyAvailable;
 	List<Equipement> equipements;
+	String image;
 	
 	@Override
 	public String toString() {
@@ -37,6 +38,7 @@ public class Armor implements IArmor {
 	public Energy getEnergyAvailable() {
 		return energyAvailable;
 	}
+	
 	public boolean add(Equipement arg0) {
 		if(equipements ==  null){
 			equipements = new ArrayList<Equipement>();
@@ -77,7 +79,7 @@ public class Armor implements IArmor {
 
 	@Override
 	public List<Weapon> getWeapons() {
-		// TODO Auto-generated method stub
+
 		List<Weapon> weapons = new ArrayList<Weapon>();
 		for(Equipement e : equipements){
 			if(Weapon.class.isAssignableFrom(e.getClass())){
@@ -85,6 +87,18 @@ public class Armor implements IArmor {
 			}
 		}
 		return weapons;
+	}
+
+	@Override
+	public String getImage() {
+
+		return image;
+	}
+
+	@Override
+	public void setImage(String image) {
+
+		this.image = image;
 	}
 	
 	

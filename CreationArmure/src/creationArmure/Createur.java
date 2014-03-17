@@ -82,6 +82,8 @@ public class Createur implements IPlugin, ICreateur{
 		
 		nouvelleArmure.setEnergyAvailable(baseEnergy);
 		
+		nouvelleArmure.setImage("tech_clone_armure2_02.png");
+		
 		return nouvelleArmure;
 	}
 }

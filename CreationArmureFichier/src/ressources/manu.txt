@@ -1,34 +1,36 @@
-nomArmure = 
+nomArmure = IronM4nu
 
-nomEnergie = 
+nomEnergie = bocalDesHaricotsVerts
 valEnergie = 
 
 casqueNom = 
-casqueEnergie = 
 casqueCouleur = 
 casqueProtection = 
 
 torseNom = 
-torseEnergie = 
 torseCouleur = 
 torseProtection = 
 
 brasGNom = 
-brasGEnergie = 
 brasGCouleur = 
 brasGProtection = 
 
 brasDNom = 
-brasDEnergie = 
 brasDCouleur = 
 brasDProtection = 
 
 jambeGNom = 
-jambeGEnergie = 
 jambeGCouleur = 
 jambeGProtection = 
 
 jambeDNom = 
-jambeDEnergie = 
 jambeDCouleur = 
 jambeDProtection = 
+
+armeGNom = 
+armeGAtq = 
+
+armeDNom = 
+armeDAtq =
+
+image = 
