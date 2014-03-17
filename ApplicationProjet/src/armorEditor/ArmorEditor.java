@@ -1,6 +1,7 @@
 package armorEditor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import armor.*;
 import interfaces.IAfficheur;
@@ -30,9 +31,9 @@ public class ArmorEditor implements IComplexPlugin {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		pluginAfficheur = loadAfficheur();
-		pluginCreateur = loadCreateur();
-		pluginModificateur = loadModificateur();
+		pluginAfficheur = loadAfficheur("affichageGraphique.Afficheur", new ArrayList<String>());
+		pluginCreateur = loadCreateur("creationArmure.Createur", new ArrayList<String>());
+		pluginModificateur = loadModificateur("modificationArmure.Modificateur", new ArrayList<String>());
 		loadData();
 		pluginAfficheur.affiche(armors.get(armors.size()-1));
 		
@@ -58,22 +59,16 @@ public class ArmorEditor implements IComplexPlugin {
 		pluginLoader = pluginManager;
 	}
 	
-	public IAfficheur loadAfficheur() {
-		ArrayList<String> args = new ArrayList<String>();
-		args.add("simple");
-		return (IAfficheur) pluginLoader.loadPlugin("affichageConsole.Afficheur", args);
+	public IAfficheur loadAfficheur(String nomAfficheur, List<String> args) {
+		return (IAfficheur) pluginLoader.loadPlugin(nomAfficheur, args);
 	}
 	
-	public ICreateur loadCreateur() {
-		ArrayList<String> args = new ArrayList<String>();
-		args.add("simple");
-		return (ICreateur) pluginLoader.loadPlugin("creationArmure.Createur", args);
+	public ICreateur loadCreateur(String nomCreateur, List<String> args) {
+		return (ICreateur) pluginLoader.loadPlugin(nomCreateur, args);
 	}	
 	
-	public IModificateur loadModificateur() {
-		ArrayList<String> args = new ArrayList<String>();
-		args.add("simple");
-		return (IModificateur) pluginLoader.loadPlugin("modificationArmure.Modificateur", args);
+	public IModificateur loadModificateur(String nomModificateur, List<String> args) {
+		return (IModificateur) pluginLoader.loadPlugin(nomModificateur, args);
 	}	
 
 }
