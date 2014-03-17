@@ -1,0 +1,34 @@
+nomArmure = 
+
+nomEnergie = 
+valEnergie = 
+
+casqueNom = 
+casqueEnergie = 
+casqueCouleur = 
+casqueProtection = 
+
+torseNom = 
+torseEnergie = 
+torseCouleur = 
+torseProtection = 
+
+brasGNom = 
+brasGEnergie = 
+brasGCouleur = 
+brasGProtection = 
+
+brasDNom = 
+brasDEnergie = 
+brasDCouleur = 
+brasDProtection = 
+
+jambeGNom = 
+jambeGEnergie = 
+jambeGCouleur = 
+jambeGProtection = 
+
+jambeDNom = 
+jambeDEnergie = 
+jambeDCouleur = 
+jambeDProtection = 
