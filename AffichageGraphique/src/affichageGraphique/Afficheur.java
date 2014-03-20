@@ -2,8 +2,10 @@ package affichageGraphique;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import interfaces.IAfficheur;
 import interfaces.IPlugin;
@@ -19,7 +21,6 @@ import javax.swing.JSeparator;
 import armor.Armor;
 import armor.Body;
 import armor.Equipement;
-import armor.Position;
 
 public class Afficheur implements IPlugin, IAfficheur {
 
@@ -38,14 +39,21 @@ public class Afficheur implements IPlugin, IAfficheur {
         JLabel lBody = new JLabel("<html><center>Body :</center>",JLabel.CENTER);
         
         HashMap<String, Color> colorMatch = new HashMap<String,Color>();
-        colorMatch.put("violet", new Color(127, 0, 255));
-        colorMatch.put("rose", Color.pink);
-        colorMatch.put("cyan", Color.cyan);
-        colorMatch.put("jaune", Color.yellow);
-        colorMatch.put("vert", Color.green);
-        colorMatch.put("bleu", Color.blue);
-        colorMatch.put("Orange", Color.orange);
         
+        Scanner scanner=null;
+        String path = "resources/colorMatch";
+        try {
+            scanner = new Scanner(new File(path));
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        }
+        while (scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            String[] match = line.split("=");
+            String[] rgb = match[1].split(",");
+            colorMatch.put(match[0].trim(), new Color(Integer.parseInt(rgb[0].trim()),Integer.parseInt(rgb[1].trim()),Integer.parseInt(rgb[2].trim())));
+        }
+        scanner.close();
         
         for(Equipement equi : armure.getEquipements()){
             switch (equi.getPos())
@@ -109,7 +117,8 @@ public class Afficheur implements IPlugin, IAfficheur {
         box2.add(new JSeparator());
         JLabel lab;
         try {
-            lab = new JLabel(new ImageIcon(new File("resources/tech_clone_armure2_02.png").toURI().toURL()));
+            lab = new JLabel(new ImageIcon(new File("resources/"+armure.getImage()).toURI().toURL()));
+            System.out.println(new File("resources/"+armure.getImage()).toURI().toURL());
             lab.setBounds(0, 0, 200, 200);
             box2.add(lab);
         } catch (MalformedURLException e) {
