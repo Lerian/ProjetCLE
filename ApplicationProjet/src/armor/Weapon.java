@@ -1,6 +1,11 @@
 package armor;
 
 public class Weapon extends Equipement {
+
+	public Weapon(String name) {
+		super(name);
+	}
+
 	int damage;
 
 	public int getDamage() {
@@ -13,7 +18,7 @@ public class Weapon extends Equipement {
 
 	@Override
 	public String toString() {
-		return "Weapon [damage=" + damage + "]";
+		return "Weapon [name : " + name + ", damage=" + damage + "]";
 	}
 	
 }

@@ -82,15 +82,13 @@ public class CreateurFichier implements ICreateur, IPlugin{
 		nouvelleArmure.add(jambeD);
 		
 		//ajout d'équipement weapon
-		Weapon armeG = new Weapon();
-			armeG.setName(prop.getProperty("armeGNom"));
+		Weapon armeG = new Weapon(prop.getProperty("armeGNom"));
 			armeG.setPos(Position.LHAND);
 			armeG.setEnergyNeeded(energie);
 			armeG.setDamage(Integer.parseInt(prop.getProperty("armeGAtq")));
 		nouvelleArmure.add(armeG);
 		
-		Weapon armeD = new Weapon();
-			armeD.setName(prop.getProperty("armeDNom"));
+		Weapon armeD = new Weapon(prop.getProperty("armeDNom"));
 			armeD.setPos(Position.RHAND);
 			armeD.setEnergyNeeded(energie);
 			armeD.setDamage(Integer.parseInt(prop.getProperty("armeDAtq")));

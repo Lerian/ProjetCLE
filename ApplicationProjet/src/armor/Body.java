@@ -23,6 +23,6 @@ public class Body extends Equipement {
 	
 	@Override
 	public String toString() {
-		return "Body [color=" + color + ", protection=" + protection + "]";
+		return "Body [name = " + name +", color=" + color + ", protection=" + protection + "]";
 	}
 }
