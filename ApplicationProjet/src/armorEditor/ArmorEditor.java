@@ -25,19 +25,28 @@ public class ArmorEditor implements IComplexPlugin {
 	
 	public void loadData() {
 		// TODO passer via un plugin
-		armors.add(pluginCreateur.cree("ArmureTest"));
+		//armors.add(pluginCreateur.cree("ArmureTest"));
+		armors.add(pluginCreateur.cree("IronM4nu"));
 	}
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		//Appel des plugins Afficheur
+		//pluginAfficheur = loadAfficheur("affichageConsole.Afficheur", new ArrayList<String>());
 		pluginAfficheur = loadAfficheur("affichageGraphique.Afficheur", new ArrayList<String>());
-		pluginCreateur = loadCreateur("creationArmure.Createur", new ArrayList<String>());
+		
+		//Appel des plugins createur
+		//pluginCreateur = loadCreateur("creationArmure.Createur", new ArrayList<String>());
+		pluginCreateur = loadCreateur("creationArmureFichier.CreateurFichier", new ArrayList<String>());
+		
 		pluginModificateur = loadModificateur("modificationArmure.Modificateur", new ArrayList<String>());
 		loadData();
-		pluginAfficheur.affiche(armors.get(armors.size()-1));
 		
+		
+		pluginAfficheur.affiche(armors.get(armors.size()-1));
+				
 		//test du plugin modificateur et de toutes ses fonctions
+		/*
 		pluginModificateur.modifieNomArmure(armors.get(armors.size()-1), "Dubidule");
 		pluginModificateur.modifieColorBody(armors.get(armors.size()-1).getBodies().get(0), "Orange");
 		pluginModificateur.modifieDamageWeapon(armors.get(armors.size()-1).getWeapons().get(0), 444);
@@ -51,7 +60,7 @@ public class ArmorEditor implements IComplexPlugin {
 		pluginModificateur.modifieProtectBody(armors.get(armors.size()-1).getBodies().get(0), 555);
 		pluginModificateur.modifieValEnergie(armors.get(armors.size()-1).getEnergyAvailable(), 666);
 		pluginAfficheur.affiche(armors.get(armors.size()-1));
-		
+		*/
 	}
 	
 	@Override

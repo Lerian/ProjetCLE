@@ -8,6 +8,7 @@ binPaths = ApplicationProjet/bin/ , \
 			AffichageConsole/bin/, \
 			AffichageGraphique/bin/, \
 			CreationArmure/bin/, \
-			ModificationArmure/bin/
+			ModificationArmure/bin/, \
+			CreationArmureFichier/bin/
 			
 armorEditor.ArmorEditor = simple

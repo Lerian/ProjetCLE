@@ -17,72 +17,76 @@ public class Createur implements IPlugin, ICreateur{
 
 	@Override
 	public Armor cree(String nomArmure) {
+		
 		Armor nouvelleArmure = new Armor();
 		nouvelleArmure.setName(nomArmure);
 		
 		//Ajout energie de base
-		Energy baseEnergy = new Energy();
-		baseEnergy.setName("baseEnergy");
-		baseEnergy.setValue(42);
-		
+		Energy energie = new Energy();
+			energie.setName("énergie vitale");
+			energie.setValue(42);
+		nouvelleArmure.setEnergyAvailable(energie);
+
 		//Création d'équipement body
 		Body casque = new Body("casque");
-			casque.setEnergyNeeded(baseEnergy);
+			casque.setEnergyNeeded(energie);
 			casque.setPos(Position.HEAD);
-			casque.setColor("violet");
+			casque.setColor("blanc");
 			casque.setProtection(11);
-		Body torse = new Body("torse");
-			torse.setEnergyNeeded(baseEnergy);
-			torse.setPos(Position.BODY);
-			torse.setColor("rose");
-			torse.setProtection(45);
-		Body brasG = new Body("brasG");
-			brasG.setEnergyNeeded(baseEnergy);
-			brasG.setPos(Position.LARM);
-			brasG.setColor("cyan");
-			brasG.setProtection(48);
-		Body brasD = new Body("brasD");
-			brasD.setEnergyNeeded(baseEnergy);
-			brasD.setPos(Position.RARM);
-			brasD.setColor("jaune");
-			brasD.setProtection(85);
-		Body jambeG = new Body("jambeG");
-			jambeG.setEnergyNeeded(baseEnergy);
-			jambeG.setPos(Position.LLEG);
-			jambeG.setColor("vert");
-			jambeG.setProtection(14);
-		Body jambeD = new Body("jambeD");
-			jambeD.setEnergyNeeded(baseEnergy);
-			jambeD.setPos(Position.RLEG);
-			jambeD.setColor("bleu");
-			jambeD.setProtection(33);
-		
-		//Création d'équipement weapon
-			Weapon laser = new Weapon();
-			laser.setName("laser");
-			laser.setPos(Position.LHAND);
-			laser.setEnergyNeeded(baseEnergy);
-			laser.setDamage(338);
-			
-			Weapon feu = new Weapon();
-			feu.setName("feu");
-			feu.setPos(Position.RHAND);
-			feu.setEnergyNeeded(baseEnergy);
-			feu.setDamage(18);
-		
-		//Ajout équipement basique
-		nouvelleArmure.add(laser);
-		nouvelleArmure.add(feu);
 		nouvelleArmure.add(casque);
+		
+		Body torse = new Body("torse");
+			torse.setEnergyNeeded(energie);
+			torse.setPos(Position.BODY);
+			torse.setColor("blanc");
+			torse.setProtection(45);
 		nouvelleArmure.add(torse);
+		
+		Body brasG = new Body("brasG");
+			brasG.setEnergyNeeded(energie);
+			brasG.setPos(Position.LARM);
+			brasG.setColor("blanc");
+			brasG.setProtection(48);
 		nouvelleArmure.add(brasG);
+			
+		Body brasD = new Body("brasD");
+			brasD.setEnergyNeeded(energie);
+			brasD.setPos(Position.RARM);
+			brasD.setColor("blanc");
+			brasD.setProtection(85);
 		nouvelleArmure.add(brasD);
+			
+		Body jambeG = new Body("jambeG");
+			jambeG.setEnergyNeeded(energie);
+			jambeG.setPos(Position.LLEG);
+			jambeG.setColor("blanc");
+			jambeG.setProtection(14);
 		nouvelleArmure.add(jambeG);
+			
+		Body jambeD = new Body("jambeD");
+			jambeD.setEnergyNeeded(energie);
+			jambeD.setPos(Position.RLEG);
+			jambeD.setColor("blanc");
+			jambeD.setProtection(33);
 		nouvelleArmure.add(jambeD);
 		
-		nouvelleArmure.setEnergyAvailable(baseEnergy);
+		//Création d'équipement weapon
+		Weapon armeG = new Weapon();
+			armeG.setName("pistolet laser");
+			armeG.setPos(Position.LHAND);
+			armeG.setEnergyNeeded(energie);
+			armeG.setDamage(338);
+		nouvelleArmure.add(armeG);
+			
+		Weapon armeD = new Weapon();
+			armeD.setName("aucune");
+			armeD.setPos(Position.RHAND);
+			armeD.setEnergyNeeded(energie);
+			armeD.setDamage(00);
+		nouvelleArmure.add(armeD);
 		
-		nouvelleArmure.setImage("tech_clone_armure2_02.png");
+		//Ajout de l'image
+		nouvelleArmure.setImage("stormtrooper.png");
 		
 		return nouvelleArmure;
 	}
