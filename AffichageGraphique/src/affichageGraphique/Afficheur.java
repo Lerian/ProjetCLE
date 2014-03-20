@@ -10,6 +10,7 @@ import java.util.Scanner;
 import interfaces.IAfficheur;
 import interfaces.IPlugin;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -17,10 +18,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.BevelBorder;
 
 import armor.Armor;
 import armor.Body;
 import armor.Equipement;
+import armor.Weapon;
 
 public class Afficheur implements IPlugin, IAfficheur {
 
@@ -59,40 +63,48 @@ public class Afficheur implements IPlugin, IAfficheur {
             switch (equi.getPos())
             {
                 case HEAD:
-                    lHead.setText(lHead.getText()+"<br>"+equi.toString());
+                    lHead.setText(lHead.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
                     lHead.setOpaque(true);
                     lHead.setBackground(colorMatch.get(((Body)equi).getColor()));
+                    lHead.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 break;
                 case RHAND:
-                    lRHand.setText(lRHand.getText()+"<br>"+equi.toString());
+                    lRHand.setText(lRHand.getText()+"<br>Name : "+equi.getName()+"<br>Power : "+((Weapon)equi).getDamage());
+                    lRHand.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 break;
                 case LHAND:
-                    lLHand.setText(lLHand.getText()+"<br>"+equi.toString());
+                    lLHand.setText(lLHand.getText()+"<br>Name : "+equi.getName()+"<br>Power : "+((Weapon)equi).getDamage());
+                    lLHand.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 break;
                 case RARM:
-                    lRArm.setText(lRArm.getText()+"<br>"+equi.toString());
+                    lRArm.setText(lRArm.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
                     lRArm.setOpaque(true);
                     lRArm.setBackground(colorMatch.get(((Body)equi).getColor()));
+                    lRArm.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 break;
                 case LARM:
-                    lLArm.setText(lLArm.getText()+"<br>"+equi.toString());
+                    lLArm.setText(lLArm.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
                     lLArm.setOpaque(true);
                     lLArm.setBackground(colorMatch.get(((Body)equi).getColor()));
+                    lLArm.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 break;
                 case RLEG:
-                    lRLeg.setText(lRLeg.getText()+"<br>"+equi.toString());
+                    lRLeg.setText(lRLeg.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
                     lRLeg.setOpaque(true);
                     lRLeg.setBackground(colorMatch.get(((Body)equi).getColor()));
+                    lRLeg.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 break;
                 case LLEG:
-                    lLLeg.setText(lLLeg.getText()+"<br>"+equi.toString());
+                    lLLeg.setText(lLLeg.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
                     lLLeg.setOpaque(true);
                     lLLeg.setBackground(colorMatch.get(((Body)equi).getColor()));
+                    lLLeg.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 break;
                 case BODY:
-                    lBody.setText(lBody.getText()+"<br>"+equi.toString());
+                    lBody.setText(lBody.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
                     lBody.setOpaque(true);
                     lBody.setBackground(colorMatch.get(((Body)equi).getColor()));
+                    lBody.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 break;
             }
         }
@@ -111,6 +123,7 @@ public class Afficheur implements IPlugin, IAfficheur {
         box1.add(lRHand);
         box1.add(new JSeparator());
         box1.add(lRLeg);
+        box1.add(new JSeparator());
         
         
         box2.add(new JLabel("<html><center>"+armure.getName()+"</center></html>", JLabel.CENTER));
@@ -118,8 +131,6 @@ public class Afficheur implements IPlugin, IAfficheur {
         JLabel lab;
         try {
             lab = new JLabel(new ImageIcon(new File("resources/"+armure.getImage()).toURI().toURL()));
-            System.out.println(new File("resources/"+armure.getImage()).toURI().toURL());
-            lab.setBounds(0, 0, 200, 200);
             box2.add(lab);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -135,6 +146,7 @@ public class Afficheur implements IPlugin, IAfficheur {
         box3.add(lLHand);
         box3.add(new JSeparator());
         box3.add(lLLeg);
+        box3.add(new JSeparator());
         
         panel.add(box1);
         panel.add(box2);
