@@ -71,15 +71,13 @@ public class Createur implements IPlugin, ICreateur{
 		nouvelleArmure.add(jambeD);
 		
 		//Création d'équipement weapon
-		Weapon armeG = new Weapon();
-			armeG.setName("pistolet laser");
+		Weapon armeG = new Weapon("pistolet laser");
 			armeG.setPos(Position.LHAND);
 			armeG.setEnergyNeeded(energie);
 			armeG.setDamage(338);
 		nouvelleArmure.add(armeG);
 			
-		Weapon armeD = new Weapon();
-			armeD.setName("aucune");
+		Weapon armeD = new Weapon("aucune");
 			armeD.setPos(Position.RHAND);
 			armeD.setEnergyNeeded(energie);
 			armeD.setDamage(00);
