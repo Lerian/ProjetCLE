@@ -1,0 +1,65 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% DOC DEVELOPPEUR %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[a4paper]{report}
+
+
+%%%%% Packages %%%%%
+
+%%%%% Langage %%%%%
+\usepackage[frenchb]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%%%%% Graphique %%%%%
+\usepackage{graphicx}
+\usepackage{wrapfig}
+%%%%% Mise en page %%%%%
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{colortbl}
+
+
+%%%%% Macros %%%%
+\input{./macros.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% DOCUMENT %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%% Page de garde %%%%%
+\input{./page_de_garde.tex}
+
+
+%%%%% Sommaire %%%%%
+\tableofcontents
+
+Plan :
+
+	Intro
+
+	Informations générales
+
+	Fonctionnement des plugins
+
+	Execution des plugins
+
+	Tuto : comment créer un plugin
+
+	Conclu
+
+%%%%% Introduction %%%%%
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Introduction}
+%\input{./introduction.tex}
+
+
+%%%%% Conclusion %%%%%
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Conclusion}
+%\input{./conclusion.tex}
+
+\end{document}
