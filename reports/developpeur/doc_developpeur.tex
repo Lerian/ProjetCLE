@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% DOC DEVELOPPEUR %%%%%
+%%%%% DOC DEVELOPPEUR : MAIN %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -19,6 +19,7 @@
 \usepackage{hyperref}
 \usepackage{fancyhdr}
 \usepackage{colortbl}
+\usepackage{titlesec}
 
 
 %%%%% Macros %%%%
@@ -37,9 +38,6 @@
 %%%%% Sommaire %%%%%
 \tableofcontents
 
-Plan :
-
-	Intro
 
 	Informations générales
 
@@ -51,15 +49,14 @@ Plan :
 
 	Conclu
 
-%%%%% Introduction %%%%%
-\chapter*{Introduction}
-\addcontentsline{toc}{chapter}{\protect\numberline{}Introduction}
-%\input{./introduction.tex}
+%%%%% Préface %%%%%
+\chapter*{Préface}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Préface}
+\input{./preface.tex}
 
 
-%%%%% Conclusion %%%%%
-\chapter*{Conclusion}
-\addcontentsline{toc}{chapter}{\protect\numberline{}Conclusion}
-%\input{./conclusion.tex}
+%%%%% Informations générales %%%%%
+\chapter{Informations générales}
+\input{./informations_generales.tex}
 
 \end{document}
