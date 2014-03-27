@@ -11,9 +11,13 @@ public interface IPlugin {
 	
 	/**
 	 * Méthode renseignant le type du plugin
-	 * @return
+	 * @return Le type du plugin
 	 */
 	public String type();
 	
+	/**
+	 * Méthode donnant accès à l'objet Properties contenant les informations du fichier de config
+	 * @param prop Le Properties attaché au plugin
+	 */
 	public void receiveProperties(Properties prop);
 }

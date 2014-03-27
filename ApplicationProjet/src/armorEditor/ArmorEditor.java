@@ -34,13 +34,13 @@ public class ArmorEditor implements IComplexPlugin {
 	public void run() {
 		//Appel des plugins Afficheur
 		//pluginAfficheur = loadAfficheur("affichageConsole.Afficheur", new ArrayList<String>());
-		pluginAfficheur = loadAfficheur("affichageGraphique.Afficheur", /*new ArrayList<String>()*/"");
+		pluginAfficheur = loadAfficheur("affichageGraphique.Afficheur", /*new ArrayList<String>()*/"AffichageGraphique/resources/afficheur.init");
 		
 		//Appel des plugins createur
 		//pluginCreateur = loadCreateur("creationArmure.Createur", new ArrayList<String>());
-		pluginCreateur = loadCreateur("creationArmureFichier.CreateurFichier", /*new ArrayList<String>()*/"");
+		pluginCreateur = loadCreateur("creationArmureFichier.CreateurFichier", /*new ArrayList<String>()*/"CreationArmureFichier/resources/createurFichier.init");
 		
-		pluginModificateur = loadModificateur("modificationArmure.Modificateur", /*new ArrayList<String>()*/"");
+		pluginModificateur = loadModificateur("modificationArmure.Modificateur", /*new ArrayList<String>()*/"ModificationArmure/resources/modificateur.init");
 		loadData();
 		
 		

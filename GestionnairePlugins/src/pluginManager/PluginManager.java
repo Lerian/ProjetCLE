@@ -162,11 +162,15 @@ public class PluginManager implements IPluginManager {
 	private Properties readPluginInit(String initPath) {
 		Properties res = new Properties();
 		
-		try {
-			res.load(new FileReader(initPath));
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(new File(initPath).isFile()) {
+			try {
+				res.load(new FileReader(initPath));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		res.setProperty("pathToInit", initPath);
 		
 		return res;
 	}
