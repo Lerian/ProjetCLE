@@ -171,6 +171,7 @@ public class PluginManager implements IPluginManager {
 		}
 		
 		res.setProperty("pathToInit", initPath);
+		res.setProperty("pathToHome", rightPathToHome);
 		
 		return res;
 	}
