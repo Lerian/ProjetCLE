@@ -28,6 +28,9 @@ import armor.Weapon;
 
 public class Afficheur implements IPlugin, IAfficheur {
 
+    String pathI;
+    Properties propI;
+    
     @Override
     public void affiche(Armor armure) {
         JFrame frame = new JFrame(armure.getName());
@@ -49,7 +52,7 @@ public class Afficheur implements IPlugin, IAfficheur {
         HashMap<String, Color> colorMatch = new HashMap<String,Color>();
         
         Scanner scanner=null;
-        String path = "resources/colorMatch";
+        String path = propI.getProperty("pathToHome")+propI.getProperty("color");
         try {
             scanner = new Scanner(new File(path));
         } catch (FileNotFoundException e1) {
@@ -102,7 +105,7 @@ public class Afficheur implements IPlugin, IAfficheur {
         }
         
         lName.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
-        lImage = new JLabel(new ImageIcon("resources/"+armure.getImage()));
+        lImage = new JLabel(new ImageIcon(propI.getProperty("pathToHome")+propI.getProperty("imgDir")+armure.getImage()));
         lEnergy.setBorder(BorderFactory.createTitledBorder("Energy"));
         
         
@@ -147,6 +150,7 @@ public class Afficheur implements IPlugin, IAfficheur {
         
         frame.setContentPane(panel);
         frame.pack();
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -165,7 +169,8 @@ public class Afficheur implements IPlugin, IAfficheur {
 	@Override
 	public void receiveProperties(Properties prop) {
 		// TODO Auto-generated method stub
-		
+		pathI = prop.getProperty("pathToInit");
+		propI = prop;
 	}
 
 }
