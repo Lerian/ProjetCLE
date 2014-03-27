@@ -107,4 +107,10 @@ public class CreateurFichier implements ICreateur, IPlugin{
 		return PluginTypes.CREATEUR.toString();
 	}
 
+	@Override
+	public void receiveProperties(Properties prop) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,5 +1,7 @@
 package affichageConsole;
 
+import java.util.Properties;
+
 import armor.Armor;
 import interfaces.IAfficheur;
 import interfaces.IPlugin;
@@ -22,5 +24,11 @@ public class Afficheur implements IPlugin, IAfficheur {
 	public String type() {
 		// TODO Auto-generated method stub
 		return PluginTypes.AFFICHEUR.toString();
+	}
+
+	@Override
+	public void receiveProperties(Properties prop) {
+		// TODO Auto-generated method stub
+		
 	}
 }

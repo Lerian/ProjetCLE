@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.Scanner;
 
 import interfaces.IAfficheur;
@@ -164,6 +165,12 @@ public class Afficheur implements IPlugin, IAfficheur {
 	public String type() {
 		// TODO Auto-generated method stub
 		return PluginTypes.AFFICHEUR.toString();
+	}
+
+	@Override
+	public void receiveProperties(Properties prop) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

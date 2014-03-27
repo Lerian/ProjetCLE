@@ -1,5 +1,7 @@
 package modificationArmure;
 
+import java.util.Properties;
+
 import armor.Armor;
 import armor.Body;
 import armor.Energy;
@@ -76,6 +78,12 @@ public class Modificateur implements IPlugin, IModificateur{
 	public String type() {
 		// TODO Auto-generated method stub
 		return PluginTypes.MODIFICATEUR.toString();
+	}
+
+	@Override
+	public void receiveProperties(Properties prop) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

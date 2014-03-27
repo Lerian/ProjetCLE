@@ -2,6 +2,7 @@ package armorEditor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import armor.*;
 import interfaces.IAfficheur;
@@ -84,6 +85,12 @@ public class ArmorEditor implements IComplexPlugin {
 	public String type() {
 		// TODO Auto-generated method stub
 		return PluginTypes.MAIN.toString();
+	}
+
+	@Override
+	public void receiveProperties(Properties prop) {
+		// TODO Auto-generated method stub
+		
 	}	
 
 }

@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.Properties;
+
 public interface IPlugin {
 
 	/**
@@ -12,4 +14,6 @@ public interface IPlugin {
 	 * @return
 	 */
 	public String type();
+	
+	public void receiveProperties(Properties prop);
 }

@@ -1,5 +1,7 @@
 package creationArmure;
 
+import java.util.Properties;
+
 import armor.Armor;
 import armor.Body;
 import armor.Energy;
@@ -94,5 +96,11 @@ public class Createur implements IPlugin, ICreateur{
 	public String type() {
 		// TODO Auto-generated method stub
 		return PluginTypes.CREATEUR.toString();
+	}
+
+	@Override
+	public void receiveProperties(Properties prop) {
+		// TODO Auto-generated method stub
+		
 	}
 }

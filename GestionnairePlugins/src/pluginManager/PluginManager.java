@@ -16,6 +16,7 @@ import interfaces.IPluginManager;
 public class PluginManager implements IPluginManager {
 	
 	private URLClassLoader pluginClassLoader;
+	private String rightPathToHome = "";
 	
 	public PluginManager() {
 		// Lecture du fichier de conf indiquant les plugins à lancer
@@ -41,7 +42,6 @@ public class PluginManager implements IPluginManager {
 		String[] pathsToHome = prop.getProperty("homePath").split("\\s*,\\s*");
 		
 		URL[] urls = new URL[pathsToUse.length];
-		String rightPathToHome = "";
 		int i = 0;
 		
 		for(String s: pathsToHome) {
@@ -138,16 +138,17 @@ public class PluginManager implements IPluginManager {
 			//for(String s: args) {
 				System.out.println("arg: "+initPath);
 			//}
-			readPluginInit(initPath);
+			Properties pluginProperties = readPluginInit(rightPathToHome+initPath);
 			Class<?> pluginToLoad = Class.forName(pluginName,false,pluginClassLoader);
 			if(IPlugin.class.isAssignableFrom(pluginToLoad)) {
 				if(IComplexPlugin.class.isAssignableFrom(pluginToLoad)) {
 					res = (IComplexPlugin) pluginToLoad.newInstance();
 					((IComplexPlugin)res).receivePluginManager(this);
-					res.run();		
 				} else {
 					res = (IPlugin) pluginToLoad.newInstance();
 				}
+				res.receiveProperties(pluginProperties);
+				res.run();
 			} else {
 				System.out.println("Erreur d'interface");
 			}
@@ -158,8 +159,15 @@ public class PluginManager implements IPluginManager {
 		return res;
 	}
 
-	private void readPluginInit(String initPath) {
-		// TODO Auto-generated method stub
+	private Properties readPluginInit(String initPath) {
+		Properties res = new Properties();
 		
+		try {
+			res.load(new FileReader(initPath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 }
