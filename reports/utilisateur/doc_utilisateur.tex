@@ -22,7 +22,6 @@
 \usepackage{titlesec}
 
 
-
 %%%%% Macros %%%%
 \input{./macros.tex}
 
@@ -40,18 +39,6 @@
 \tableofcontents
 
 
-Plan : 
-
-	Intro
-
-	Description de l'application :\\
-		But et généralités\\
-		Configuration nécéssaire
-		
-	Installation et exécution\\
-		Importer le projet ?\\
-		Exécution
-
 	Manipulation des données\\
 		création d'une armure par fichier txt
 
@@ -59,14 +46,21 @@ Plan :
 
 
 %%%%% Introduction %%%%%
-\chapter*{Introduction}
-\addcontentsline{toc}{chapter}{\protect\numberline{}Introduction}
-%\input{./introduction.tex}
+\chapter*{Préface}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Préface}
+\input{./preface.tex}
 
 
-%%%%% Conclusion %%%%%
-\chapter*{Conclusion}
-\addcontentsline{toc}{chapter}{\protect\numberline{}Conclusion}
-%\input{./conclusion.tex}
+%%%%% Notions fondamentales %%%%%
+\chapter{Notions fondamentales}
+\input{./notions_fondamentales.tex}
+
+
+%%%%% Tutoriel %%%%%
+\chapter{Tutoriel : Création d'armure par fichier .txt}
+\input{./tutoriel.tex}
+
+
+
 
 \end{document}
