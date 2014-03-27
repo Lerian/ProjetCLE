@@ -3,7 +3,6 @@ package affichageGraphique;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Scanner;
@@ -103,11 +102,7 @@ public class Afficheur implements IPlugin, IAfficheur {
         }
         
         lName.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
-        try {
-            lImage = new JLabel(new ImageIcon(new File("resources/"+armure.getImage()).toURI().toURL()));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        lImage = new JLabel(new ImageIcon("resources/"+armure.getImage()));
         lEnergy.setBorder(BorderFactory.createTitledBorder("Energy"));
         
         
