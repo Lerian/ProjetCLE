@@ -15,7 +15,6 @@ import interfaces.IPluginManager;
 
 public class PluginManager implements IPluginManager {
 	
-	//private ConfigurableURLClassLoader pluginClassLoader;
 	private URLClassLoader pluginClassLoader;
 	
 	public PluginManager() {
@@ -68,24 +67,78 @@ public class PluginManager implements IPluginManager {
 		}
 		pluginClassLoader = new URLClassLoader(urls);
 		
+		scanPlugins(urls);
+		
 		if(pluginsToLoad.length > 0) {
 			for(String s : pluginsToLoad) {
-				List<String> argsArray = Arrays.asList(prop.getProperty(s).split("\\s*,\\s*"));
+				//List<String> argsArray = Arrays.asList(prop.getProperty(s).split("\\s*,\\s*"));
 				
-				loadPlugin(s,argsArray);
+				loadPlugin(s,prop.getProperty(s));
 			}
 		}
 	}
 	
+	private void scanPlugins(URL[] urls) {
+		for(URL currentURL : urls) {
+			File currentFile = new File(currentURL.toString().substring(5));
+			if(currentFile.isDirectory()) {
+				// gestion de répertoire
+				File[] subFiles = currentFile.listFiles();
+				URL[] subURLs = new URL[subFiles.length];
+				int currentIndex = 0;
+				for(File f: subFiles) {
+					try {
+						subURLs[currentIndex] = f.toURI().toURL();
+					} catch (MalformedURLException e) {
+						e.printStackTrace();
+					}
+					currentIndex++;
+				}
+				scanPlugins(subURLs);
+			} else {
+				// gestion de fichier
+				if(currentFile.toString().endsWith(".class")) {
+					System.out.println(currentFile.toString());
+					String[] pathTokens = currentFile.toString().split("/");
+					String className = "";
+					boolean binFound = false;
+					for(String s: pathTokens) {
+						if(binFound) {
+							if(s.endsWith(".class")) {
+								s = s.substring(0, s.length()-6);
+								className = className.concat(s);
+							} else {
+								className = className.concat(s);
+								className = className.concat(".");
+							}
+						} else {
+							if(s.compareTo("bin") == 0) {
+								binFound = true;
+							}
+						}
+					}
+					System.out.println(className);
+					try {
+						Class<?> classToTest = Class.forName(className,false,pluginClassLoader);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+
 	// Charge un plugin donné selon les arguments donnés
-	public IPlugin loadPlugin(String pluginName, List<String> args) {
+	public IPlugin loadPlugin(String pluginName, /*List<*/String/*>*/ initPath) {
 		IPlugin res = null;
 		
 		try {
 			System.out.println("Chargement de "+pluginName);
-			for(String s: args) {
-				System.out.println("arg: "+s);
-			}
+			//for(String s: args) {
+				System.out.println("arg: "+initPath);
+			//}
+			readPluginInit(initPath);
 			Class<?> pluginToLoad = Class.forName(pluginName,false,pluginClassLoader);
 			if(IPlugin.class.isAssignableFrom(pluginToLoad)) {
 				if(IComplexPlugin.class.isAssignableFrom(pluginToLoad)) {
@@ -103,5 +156,10 @@ public class PluginManager implements IPluginManager {
 		}
 		
 		return res;
+	}
+
+	private void readPluginInit(String initPath) {
+		// TODO Auto-generated method stub
+		
 	}
 }

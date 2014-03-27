@@ -10,6 +10,7 @@ import armor.Position;
 import armor.Weapon;
 import interfaces.ICreateur;
 import interfaces.IPlugin;
+import interfaces.PluginTypes;
 
 public class CreateurFichier implements ICreateur, IPlugin{
 
@@ -99,6 +100,11 @@ public class CreateurFichier implements ICreateur, IPlugin{
 		
 		return nouvelleArmure;
 		
+	}
+
+	@Override
+	public String type() {
+		return PluginTypes.CREATEUR.toString();
 	}
 
 }

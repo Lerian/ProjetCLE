@@ -8,6 +8,7 @@ import armor.Position;
 import armor.Weapon;
 import interfaces.IModificateur;
 import interfaces.IPlugin;
+import interfaces.PluginTypes;
 
 public class Modificateur implements IPlugin, IModificateur{
 
@@ -69,6 +70,12 @@ public class Modificateur implements IPlugin, IModificateur{
 	public void modifieDamageWeapon(Weapon weapon, int damage) {
 		
 		weapon.setDamage(damage);
+	}
+
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return PluginTypes.MODIFICATEUR.toString();
 	}
 	
 }

@@ -8,7 +8,9 @@ import interfaces.IAfficheur;
 import interfaces.IComplexPlugin;
 import interfaces.ICreateur;
 import interfaces.IModificateur;
+import interfaces.IPlugin;
 import interfaces.IPluginManager;
+import interfaces.PluginTypes;
 
 public class ArmorEditor implements IComplexPlugin {
 
@@ -21,10 +23,8 @@ public class ArmorEditor implements IComplexPlugin {
 	public ArmorEditor() {
 		System.out.println("Lancement de l'éditeur d'armure");
 	}
-	// TODO récupérer le pluginManager
 	
 	public void loadData() {
-		// TODO passer via un plugin
 		//armors.add(pluginCreateur.cree("ArmureTest"));
 		armors.add(pluginCreateur.cree("IronM4nu"));
 	}
@@ -33,13 +33,13 @@ public class ArmorEditor implements IComplexPlugin {
 	public void run() {
 		//Appel des plugins Afficheur
 		//pluginAfficheur = loadAfficheur("affichageConsole.Afficheur", new ArrayList<String>());
-		pluginAfficheur = loadAfficheur("affichageGraphique.Afficheur", new ArrayList<String>());
+		pluginAfficheur = loadAfficheur("affichageGraphique.Afficheur", /*new ArrayList<String>()*/"");
 		
 		//Appel des plugins createur
 		//pluginCreateur = loadCreateur("creationArmure.Createur", new ArrayList<String>());
-		pluginCreateur = loadCreateur("creationArmureFichier.CreateurFichier", new ArrayList<String>());
+		pluginCreateur = loadCreateur("creationArmureFichier.CreateurFichier", /*new ArrayList<String>()*/"");
 		
-		pluginModificateur = loadModificateur("modificationArmure.Modificateur", new ArrayList<String>());
+		pluginModificateur = loadModificateur("modificationArmure.Modificateur", /*new ArrayList<String>()*/"");
 		loadData();
 		
 		
@@ -68,16 +68,22 @@ public class ArmorEditor implements IComplexPlugin {
 		pluginLoader = pluginManager;
 	}
 	
-	public IAfficheur loadAfficheur(String nomAfficheur, List<String> args) {
+	public IAfficheur loadAfficheur(String nomAfficheur, /*List<*/String/*>*/ args) {
 		return (IAfficheur) pluginLoader.loadPlugin(nomAfficheur, args);
 	}
 	
-	public ICreateur loadCreateur(String nomCreateur, List<String> args) {
+	public ICreateur loadCreateur(String nomCreateur, /*List<*/String/*>*/ args) {
 		return (ICreateur) pluginLoader.loadPlugin(nomCreateur, args);
 	}	
 	
-	public IModificateur loadModificateur(String nomModificateur, List<String> args) {
+	public IModificateur loadModificateur(String nomModificateur, /*List<*/String/*>*/ args) {
 		return (IModificateur) pluginLoader.loadPlugin(nomModificateur, args);
+	}
+
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return PluginTypes.MAIN.toString();
 	}	
 
 }

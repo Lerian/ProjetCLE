@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import interfaces.IAfficheur;
 import interfaces.IPlugin;
+import interfaces.PluginTypes;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -162,5 +163,11 @@ public class Afficheur implements IPlugin, IAfficheur {
     public void run() {
         
     }
+
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return PluginTypes.AFFICHEUR.toString();
+	}
 
 }

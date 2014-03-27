@@ -7,6 +7,7 @@ import armor.Position;
 import armor.Weapon;
 import interfaces.ICreateur;
 import interfaces.IPlugin;
+import interfaces.PluginTypes;
 
 public class Createur implements IPlugin, ICreateur{
 
@@ -87,5 +88,11 @@ public class Createur implements IPlugin, ICreateur{
 		nouvelleArmure.setImage("stormtrooper.png");
 		
 		return nouvelleArmure;
+	}
+
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return PluginTypes.CREATEUR.toString();
 	}
 }

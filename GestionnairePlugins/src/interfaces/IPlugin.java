@@ -8,7 +8,8 @@ public interface IPlugin {
 	void run();
 	
 	/**
-	 * Méthode de lancement commpliquée, avec référence au PluginManager nécessaire
-	 * ou même méthode avec test des paramètres du constructeur
+	 * Méthode renseignant le type du plugin
+	 * @return
 	 */
+	public String type();
 }

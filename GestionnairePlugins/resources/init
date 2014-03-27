@@ -11,4 +11,4 @@ binPaths = ApplicationProjet/bin/ , \
 			ModificationArmure/bin/, \
 			CreationArmureFichier/bin/
 			
-armorEditor.ArmorEditor = simple
+armorEditor.ArmorEditor = ApplicationProjet/resources/armorEditor.init
