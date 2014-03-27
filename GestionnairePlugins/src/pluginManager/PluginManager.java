@@ -66,8 +66,10 @@ public class PluginManager implements IPluginManager {
 			}
 		}
 		pluginClassLoader = new URLClassLoader(urls);
-		
+
+		System.out.println("================Scan================");
 		scanPlugins(urls);
+		System.out.println("====================================");
 		
 		if(pluginsToLoad.length > 0) {
 			for(String s : pluginsToLoad) {
@@ -98,7 +100,7 @@ public class PluginManager implements IPluginManager {
 			} else {
 				// gestion de fichier
 				if(currentFile.toString().endsWith(".class")) {
-					System.out.println(currentFile.toString());
+					//System.out.println(currentFile.toString());
 					String[] pathTokens = currentFile.toString().split("/");
 					String className = "";
 					boolean binFound = false;
@@ -117,9 +119,19 @@ public class PluginManager implements IPluginManager {
 							}
 						}
 					}
-					System.out.println(className);
+					//System.out.println(className);
 					try {
 						Class<?> classToTest = Class.forName(className,false,pluginClassLoader);
+						if(IPlugin.class.isAssignableFrom(classToTest)) {
+							try {
+								Object obj = classToTest.newInstance();
+								System.out.println(((IPlugin) obj).type()+" : "+classToTest.getName());
+							} catch (InstantiationException
+									| IllegalAccessException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
