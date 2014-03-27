@@ -1,3 +1,36 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% DOC DEVELOPPEUR : TUTORIEL CREATION PLUGIN %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Pour créer un nouveau plugin il est conseillé d'utilisé l'IDE Eclipse et d'y importer les projets disponible sur GitHub par la commande :
+\vspace{0.5cm}\\
+\begin{tabular}{|>{\columncolor{lightgray}}p{11.5cm}|}
+	\hline
+	\texttt{git clone https://github.com/Lerian/ProjetCLE.git}\\
+	\hline
+\end{tabular}\\
+
+Ou en passant par le plugin git sous eclipse.
+Une fois les projets correctements importé, vous pouvez commencé la création de votre plugin.
+
+Pour commencé, créez un nouveau projet java à placer dans le dossier ProjetCLE.
+
+Créez ensuite une classe qui sera votre classe principal.
+Cette classe devra implémenter l'interface IPlugin du projet GestionnairePlugins.
+Si vous souhaitez creez un plugin pour le logiciel d'édition d'armure, vous devez choisir le type de plugin à creez :
+\begin{itemize}
+    \item Créateur : implémenter l'interface ICreateur du projet ArmorEditor.
+    \item Modificateur : implémenter l'interface IModificateur du projet ArmorEditor.
+    \item Afficheur : implémenter l'interface IAfficheur du projet ArmorEditor.
+\end{itemize}
+\vspace{0.5cm}
+Si des erreurs apparaisse ajouter les projets GestionnairePlugins et ArmorEditor à votre build path.
+
+Vous pouvez maintenant créer votre plugin en implémentant les méthodes des interfaces.
+
+La méthode run est executé lors de l'ajout de votre plugin au lancement de la plateforme.
+
+La méthode type doit retourné le type du plugin.
+
+La méthode receiveProperties fournie un objet Properties qui contient : "pathToHome", "pathToInit" ainsi que les informations qui seront à mettre dans un fichier .init à créer dans le dossier resources de votre projet.
+
+Voila vous avez créer votre plugin, félicitation !
