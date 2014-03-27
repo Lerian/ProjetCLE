@@ -14,6 +14,8 @@ import interfaces.PluginTypes;
 
 public class CreateurFichier implements ICreateur, IPlugin{
 
+    Properties propI;
+    
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -25,7 +27,7 @@ public class CreateurFichier implements ICreateur, IPlugin{
 		// Récupération du fichier
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileReader("resources/" + filename + ".txt"));
+			prop.load(new FileReader(propI.getProperty("pathToHome")+ propI.getProperty("filesPath") + filename + ".txt"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -110,7 +112,7 @@ public class CreateurFichier implements ICreateur, IPlugin{
 	@Override
 	public void receiveProperties(Properties prop) {
 		// TODO Auto-generated method stub
-		
+		propI = prop;
 	}
 
 }
