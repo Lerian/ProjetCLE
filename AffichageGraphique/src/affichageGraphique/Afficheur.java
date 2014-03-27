@@ -34,14 +34,18 @@ public class Afficheur implements IPlugin, IAfficheur {
         JFrame frame = new JFrame(armure.getName());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        JLabel lHead = new JLabel("<html><center>Head :</center>",JLabel.CENTER);
-        JLabel lRHand = new JLabel("<html><center>Right Hand :</center>",JLabel.CENTER);
-        JLabel lLHand = new JLabel("<html><center>Left Hand :</center>",JLabel.CENTER);
-        JLabel lRArm = new JLabel("<html><center>Right Arm :</center>",JLabel.CENTER);
-        JLabel lLArm = new JLabel("<html><center>Left Arm :</center>",JLabel.CENTER);
-        JLabel lRLeg = new JLabel("<html><center>Right Leg :</center>",JLabel.CENTER);
-        JLabel lLLeg = new JLabel("<html><center>Left Leg :</center>",JLabel.CENTER);
-        JLabel lBody = new JLabel("<html><center>Body :</center>",JLabel.CENTER);
+        JLabel lHead = new JLabel("<html>",JLabel.CENTER);
+        JLabel lRHand = new JLabel("<html>",JLabel.CENTER);
+        JLabel lLHand = new JLabel("<html>",JLabel.CENTER);
+        JLabel lRArm = new JLabel("<html>",JLabel.CENTER);
+        JLabel lLArm = new JLabel("<html>",JLabel.CENTER);
+        JLabel lRLeg = new JLabel("<html>",JLabel.CENTER);
+        JLabel lLLeg = new JLabel("<html>",JLabel.CENTER);
+        JLabel lBody = new JLabel("<html>",JLabel.CENTER);
+        
+        JLabel lName = new JLabel("<html><center><h2><b><i>"+armure.getName()+"</i></b></h2></center></html>", JLabel.CENTER);
+        JLabel lEnergy = new JLabel("<html><center>Type : "+armure.getEnergyAvailable().getName()+" - Available : "+armure.getEnergyAvailable().getValue()+"</center></html>",JLabel.CENTER);
+        JLabel lImage = null;
         
         HashMap<String, Color> colorMatch = new HashMap<String,Color>();
         
@@ -65,53 +69,51 @@ public class Afficheur implements IPlugin, IAfficheur {
             {
                 case HEAD:
                     lHead.setText(lHead.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
-                    lHead.setOpaque(true);
-                    lHead.setBackground(colorMatch.get(((Body)equi).getColor()));
-                    lHead.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    lHead.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,colorMatch.get(((Body)equi).getColor()),Color.BLACK), "Head"));
                 break;
                 case RHAND:
                     lRHand.setText(lRHand.getText()+"<br>Name : "+equi.getName()+"<br>Power : "+((Weapon)equi).getDamage());
-                    lRHand.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    lRHand.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,Color.BLACK,Color.BLACK), "Right Hand"));
                 break;
                 case LHAND:
                     lLHand.setText(lLHand.getText()+"<br>Name : "+equi.getName()+"<br>Power : "+((Weapon)equi).getDamage());
-                    lLHand.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    lLHand.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,Color.BLACK,Color.BLACK), "Left Hand"));
                 break;
                 case RARM:
                     lRArm.setText(lRArm.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
-                    lRArm.setOpaque(true);
-                    lRArm.setBackground(colorMatch.get(((Body)equi).getColor()));
-                    lRArm.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    lRArm.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,colorMatch.get(((Body)equi).getColor()),Color.BLACK), "Right Arm"));
                 break;
                 case LARM:
                     lLArm.setText(lLArm.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
-                    lLArm.setOpaque(true);
-                    lLArm.setBackground(colorMatch.get(((Body)equi).getColor()));
-                    lLArm.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    lLArm.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,colorMatch.get(((Body)equi).getColor()),Color.BLACK), "Left Arm"));
                 break;
                 case RLEG:
                     lRLeg.setText(lRLeg.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
-                    lRLeg.setOpaque(true);
-                    lRLeg.setBackground(colorMatch.get(((Body)equi).getColor()));
-                    lRLeg.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    lRLeg.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,colorMatch.get(((Body)equi).getColor()),Color.BLACK), "Right Leg"));
                 break;
                 case LLEG:
                     lLLeg.setText(lLLeg.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
-                    lLLeg.setOpaque(true);
-                    lLLeg.setBackground(colorMatch.get(((Body)equi).getColor()));
-                    lLLeg.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    lLLeg.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,colorMatch.get(((Body)equi).getColor()),Color.BLACK), "Left Leg"));
                 break;
                 case BODY:
                     lBody.setText(lBody.getText()+"<br>Name : "+equi.getName()+"<br>Protection : "+((Body)equi).getProtection());
-                    lBody.setOpaque(true);
-                    lBody.setBackground(colorMatch.get(((Body)equi).getColor()));
-                    lBody.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    lBody.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,colorMatch.get(((Body)equi).getColor()),Color.BLACK), "Body"));
                 break;
             }
         }
         
+        lName.setBorder(BorderFactory.createTitledBorder("Name"));
+        try {
+            lImage = new JLabel(new ImageIcon(new File("resources/"+armure.getImage()).toURI().toURL()));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        lEnergy.setBorder(BorderFactory.createTitledBorder("Energy"));
+        
+        
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        
         Box box1 = new Box(BoxLayout.Y_AXIS);
         Box box2 = new Box(BoxLayout.Y_AXIS);
         Box box3 = new Box(BoxLayout.Y_AXIS);
@@ -126,18 +128,11 @@ public class Afficheur implements IPlugin, IAfficheur {
         box1.add(lRLeg);
         box1.add(new JSeparator());
         
-        
-        box2.add(new JLabel("<html><center>"+armure.getName()+"</center></html>", JLabel.CENTER));
+        box2.add(lName);
         box2.add(new JSeparator());
-        JLabel lab;
-        try {
-            lab = new JLabel(new ImageIcon(new File("resources/"+armure.getImage()).toURI().toURL()));
-            box2.add(lab);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        box2.add(lImage);
         box2.add(new JSeparator());
-        box2.add(new JLabel("<html><center>Energy : type ["+armure.getEnergyAvailable().getName()+"] "+armure.getEnergyAvailable().getValue()+" remaining</center></html>",JLabel.CENTER));
+        box2.add(lEnergy);
         
         box3.add(new JSeparator());
         box3.add(lBody);
