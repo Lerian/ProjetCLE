@@ -19,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.border.AbstractBorder;
 import javax.swing.border.BevelBorder;
 
 import armor.Armor;
@@ -102,7 +101,7 @@ public class Afficheur implements IPlugin, IAfficheur {
             }
         }
         
-        lName.setBorder(BorderFactory.createTitledBorder("Name"));
+        lName.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
         try {
             lImage = new JLabel(new ImageIcon(new File("resources/"+armure.getImage()).toURI().toURL()));
         } catch (MalformedURLException e) {
@@ -131,7 +130,6 @@ public class Afficheur implements IPlugin, IAfficheur {
         box2.add(lName);
         box2.add(new JSeparator());
         box2.add(lImage);
-        box2.add(new JSeparator());
         box2.add(lEnergy);
         
         box3.add(new JSeparator());
@@ -147,6 +145,9 @@ public class Afficheur implements IPlugin, IAfficheur {
         panel.add(box1);
         panel.add(box2);
         panel.add(box3);
+        
+        panel.setOpaque(true);
+        panel.setBackground(Color.WHITE);
         
         frame.setContentPane(panel);
         frame.pack();
