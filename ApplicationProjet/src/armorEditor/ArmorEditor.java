@@ -21,30 +21,79 @@ public class ArmorEditor implements IComplexPlugin {
 	private ICreateur pluginCreateur;
 	private IModificateur pluginModificateur;
 	
+	private Properties props;
+	
 	public ArmorEditor() {
 		System.out.println("Lancement de l'éditeur d'armure");
 	}
 	
-	public void loadData() {
+	public void loadData(String creatorArgument) {
 		//armors.add(pluginCreateur.cree("ArmureTest"));
-		armors.add(pluginCreateur.cree("IronM4nu"));
+		armors.add(pluginCreateur.cree(creatorArgument));
 	}
 	
 	@Override
 	public void run() {
+		
+		int index = 0;
+		String entryValue = props.getProperty(String.valueOf(index));
+		String[] entryParts;
+		
+		while(entryValue != null) {
+			entryParts = entryValue.split(":=");
+			switch(entryParts[0].trim()) {
+			case "AFFICHEUR":
+				entryParts = entryParts[1].split("#");
+				pluginAfficheur = loadAfficheur(entryParts[0].trim(), entryParts[1].trim());
+				break;
+			case "CREATEUR":
+				entryParts = entryParts[1].split("#");
+				pluginCreateur = loadCreateur(entryParts[0].trim(), entryParts[1].trim());
+				break;
+			case "MODIFICATEUR":
+				entryParts = entryParts[1].split("#");
+				pluginModificateur = loadModificateur(entryParts[0].trim(), entryParts[1].trim());
+				break;
+			case "LOAD":
+				loadData(entryParts[1].trim());
+				break;
+			case "affiche":
+				switch(entryParts[1].trim()) {
+				case "FIRST":
+					pluginAfficheur.affiche(armors.get(0));
+					break;
+				case "LAST":
+					pluginAfficheur.affiche(armors.get(armors.size()-1));
+					break;
+				case "ALL":
+					for(Armor a : armors) {
+						pluginAfficheur.affiche(a);
+					}
+					break;
+				default:
+					pluginAfficheur.affiche(armors.get(Integer.parseInt(entryParts[1].trim())));
+				}
+				break;
+			default:
+				System.out.println("Instruction inconnue : "+entryParts[0].trim());
+			}
+			index++;
+			entryValue = props.getProperty(String.valueOf(index));
+		}
+		
 		//Appel des plugins Afficheur
 		//pluginAfficheur = loadAfficheur("affichageConsole.Afficheur", new ArrayList<String>());
-		pluginAfficheur = loadAfficheur("affichageGraphique.Afficheur", /*new ArrayList<String>()*/"AffichageGraphique/resources/afficheur.init");
+			//pluginAfficheur = loadAfficheur("affichageGraphique.Afficheur", /*new ArrayList<String>()*/"AffichageGraphique/resources/afficheur.init");
 		
 		//Appel des plugins createur
-		//pluginCreateur = loadCreateur("creationArmure.Createur", new ArrayList<String>());
-		pluginCreateur = loadCreateur("creationArmureFichier.CreateurFichier", /*new ArrayList<String>()*/"CreationArmureFichier/resources/createurFichier.init");
+			//pluginCreateur = loadCreateur("creationArmure.Createur", new ArrayList<String>());
+			//pluginCreateur = loadCreateur("creationArmureFichier.CreateurFichier", /*new ArrayList<String>()*/"CreationArmureFichier/resources/createurFichier.init");
 		
-		pluginModificateur = loadModificateur("modificationArmure.Modificateur", /*new ArrayList<String>()*/"ModificationArmure/resources/modificateur.init");
-		loadData();
+		//pluginModificateur = loadModificateur("modificationArmure.Modificateur", /*new ArrayList<String>()*/"ModificationArmure/resources/modificateur.init");
+			//loadData("IronM4nu");
 		
 		
-		pluginAfficheur.affiche(armors.get(armors.size()-1));
+			//pluginAfficheur.affiche(armors.get(armors.size()-1));
 				
 		//test du plugin modificateur et de toutes ses fonctions
 		/*
@@ -89,8 +138,13 @@ public class ArmorEditor implements IComplexPlugin {
 
 	@Override
 	public void receiveProperties(Properties prop) {
+		props = prop;
 		// TODO Auto-generated method stub
-		
+		/*System.out.println("#=============================#");
+		System.out.println(prop);
+		System.out.println("#=============================#");
+		System.out.println(prop.getProperty("1"));
+		System.out.println("#=============================#");*/
 	}	
 
 }

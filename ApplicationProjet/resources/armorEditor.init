@@ -1,0 +1,57 @@
+0 : AFFICHEUR := affichageGraphique.Afficheur # AffichageGraphique/resources/afficheur.init
+1 : CREATEUR := creationArmureFichier.CreateurFichier # CreationArmureFichier/resources/createurFichier.init
+2 : MODIFICATEUR := modificationArmure.Modificateur # ModificationArmure/resources/modificateur.init
+3 : LOAD := IronM4nu
+4 : CREATEUR := creationArmure.Createur # CreationArmure/resources/createur.init
+5 : affiche := FIRST
+6 : AFFICHEUR := affichageConsole.Afficheur # AffichageConsole/resources/afficheur.init
+7 : LOAD := ArmureTest
+8 : affiche := ALL
+
+########## Explications sur la syntaxe ##########
+# _ chaque ligne prend la forme suivante:
+#	<num> : <cmd> := <cmd-arg-1> # <cmd-arg-2>
+#
+# _ <num> est le numéro de l'action. Les actions seront exécutées dans l'ordre croissant de leur numéro. La première a toujours le
+#		numéro 0. Le comportement n'est pas garanti si un numéro est absent ou doublé.
+# _ : indique le début de l'action. Peut être remplacé par un = sans changer le comportement.
+# _ <cmd> est la commande a exécuter (les différentes valeurs possibles sont listées ci-dessous).
+# _ := indique le début du/des argument(s) de la commande. Il doit être présent même si la commande ne prend pas d'agument.
+# _ <cmd-arg-i> sont les arguments passés à la commande. Ils peuvent être libres ou a choisir parmis un ensemble de valeurs (selon la 
+#		commande). Ils ne doivent pas contenir le caractère #, ni la suite de caractères :=
+# _ # sépare les arguments entre eux.
+#
+########## Commandes disponibles ##########
+# AFFICHEUR
+#	- charge un afficheur de données
+#	- prends 2 arguments
+#		- le nom complet de la classe d'afficheur voulue
+#		- Le chemin relatif vers le fichier d'init de l'afficheur, depuis le répertoire indiqué par la valeur "homePath" du
+#			fichier d'initialisation du gestionaire de plugins.
+#
+# CREATEUR
+#	- charge un créateur de données
+#	- prends 2 arguments
+#		- le nom complet de la classe de créateur voulue
+#		- Le chemin relatif vers le fichier d'init du créateur, depuis le répertoire indiqué par la valeur "homePath" du
+#			fichier d'initialisation du gestionaire de plugins.
+#
+# MODIFICATEUR
+#	- charge un modificateur de données
+#	- prends 2 arguments
+#		- le nom complet de la classe de modificateur voulue
+#		- Le chemin relatif vers le fichier d'init du modificateur, depuis le répertoire indiqué par la valeur "homePath" du
+#			fichier d'initialisation du gestionaire de plugins.
+#
+# LOAD
+#	- utilise le créateur de données courant pour créer des données
+#	- prends 1 argument
+#		- la chaine de caractères nécessaire au créateur de données pour créer les données voulues
+#
+# affiche
+#	- utilise l'afficheur courant pour afficher des données (une armure)
+#	- prends 1 argument, parmis les suivants
+#		- FIRST : affiche la première des armures créées
+#		- LAST : affiche la dernière des armures créées
+#		- ALL : affiche toutes les armures créées
+#		- un nombre Y supérieur ou égal à 0 : affiche la Yème armure créée.

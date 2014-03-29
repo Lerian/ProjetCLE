@@ -5,9 +5,10 @@ import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Hashtable;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Random;
 
 import interfaces.IComplexPlugin;
 import interfaces.IPlugin;
@@ -17,6 +18,7 @@ public class PluginManager implements IPluginManager {
 	
 	private URLClassLoader pluginClassLoader;
 	private String rightPathToHome = "";
+	private Hashtable<String,ArrayList<String>> availablePlugins = new Hashtable<String,ArrayList<String>>();
 	
 	public PluginManager() {
 		// Lecture du fichier de conf indiquant les plugins à lancer
@@ -69,6 +71,8 @@ public class PluginManager implements IPluginManager {
 
 		System.out.println("================Scan================");
 		scanPlugins(urls);
+		System.out.println("====================================");
+		System.out.println(availablePlugins);
 		System.out.println("====================================");
 		
 		if(pluginsToLoad.length > 0) {
@@ -126,6 +130,18 @@ public class PluginManager implements IPluginManager {
 							try {
 								Object obj = classToTest.newInstance();
 								System.out.println(((IPlugin) obj).type()+" : "+classToTest.getName());
+								
+								// Ajout du plugin à la collection gérée par le pluginMananger
+								if(availablePlugins.containsKey(((IPlugin) obj).type())) {
+									ArrayList<String> existingValues = availablePlugins.get(((IPlugin) obj).type());
+									existingValues.add(classToTest.getName());
+									availablePlugins.put(((IPlugin) obj).type(), existingValues);
+								} else {
+									ArrayList<String> value = new ArrayList<String>();
+									value.add(classToTest.getName());
+									availablePlugins.put(((IPlugin) obj).type(), value);
+								}
+								
 							} catch (InstantiationException
 									| IllegalAccessException e) {
 								// TODO Auto-generated catch block
@@ -171,6 +187,20 @@ public class PluginManager implements IPluginManager {
 		return res;
 	}
 
+	// Charge un plugin aléatoire du type donné
+	public IPlugin loadRandomPlugin(String pluginType) {
+		ArrayList<String> possiblePlugin = availablePlugins.get(pluginType);
+		
+		if(possiblePlugin != null && !possiblePlugin.isEmpty()) {
+			Random r = new Random();
+			int value = 0 + r.nextInt(possiblePlugin.size()-1);
+			
+			return loadPlugin(possiblePlugin.get(value), "");
+		} else {
+			return null;
+		}
+	}
+	
 	private Properties readPluginInit(String initPath) {
 		Properties res = new Properties();
 		
