@@ -2,26 +2,77 @@
 %%%%% DOC UTILISATEUR : TUTORIEL %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-L'\textsc{\'Editeur d'Armure} offre la possibilité de créer une armure à partir d'un fichier texte. Pour cela, il faut au préalable : 
-\begin{itemize}
-	\item créer un fichier texte de description, compatible avec le plugin "CreationArmureFichier".
-	\item configurer le logiciel pour qu'il utilise le bon plugin, et le bon fichier.
-\end{itemize}
+L'\textsc{\'Editeur d'Armure} offre la possibilité de créer une armure à partir d'un fichier texte. Pour cela, il faut au préalable créer un fichier texte de description, qui soit compatible avec le plugin "CreationArmureFichier". Puis il faut configurer le logiciel pour qu'il utilise le bon plugin avec le fichier texte que l'on vient de créer.
 
 
-\subsection{Création du fichier texte}
+\section{Création du fichier texte}
 
 Avant tout, il faut créer un fichier qui servira de base pour le plugin de création d'armure. Ce fichier doit être au format \texttt{.txt}, nous prendrons pour exemple \texttt{IronMan.txt}.\\
 
-Ensuite, il faut y décrire l'armure qui doit être créée. Le plugin "CreationArmureFichier" déchiffre le fichier texte grâce à des mots clefs (properties) tels que \texttt{nomArmure} ou \texttt{valEnergie}. Une armure est composée de divers éléments :
-\begin{itemize}
-	\item un nom;
-	\item une énergie;
-	\item 6 morceaux d'armure (casque, torse, jambes et bras gauche et droit);
-	\item 2 armes;
-	\item une image (facultatif).
-\end{itemize}
+Ensuite, il faut y décrire l'armure qui doit être créée. Pour cela, le fichier texte doit comporter un certain nombre de propriétés, toutes décrivant des éléments de l'armure. Le plugin "CreationArmureFichier" récupère ensuite les informations dont il a besoin pour la création, en annalysant les propriétés contenues dans le fichier texte. \\
 
-\subsection{Configuration de l'application}
+\textbf{Attention} : si toutes les propriétés ne sont pas présentes dans le fichier texte, l'armure ne sera pas créée !\\ 
+
+Les propriétés doivent être de la forme suivante :\\
+
+\begin{tabular}{|>{\columncolor{lightgray}}p{11.5cm}|}
+	\hline
+	\texttt{nomArmure = IronMan}\\
+	\texttt{nomEnergie = réacteurARC}\\
+	\texttt{valEnergie = 745}\\
+	\hline
+\end{tabular}\\
+\vspace{0.5cm}
+
+Le tableau suivant décrit l'ensemble des propriétés qui doivent être présentes dans le fichier texte de description de l'armure :\\
+
+   \centering
+	\begin{tabular}{|c|l|} 
+		\hline
+		\multicolumn{2}{|c|}{\textbf{Armure globale}} \\
+		\hline
+		\texttt{nomArmure} & nom de l'armure \\
+		\hline
+		\multicolumn{2}{|c|}{\textbf{\'Energie}} \\
+		\hline
+		\texttt{nomEnergie} & nom de l'énergie \\
+		\texttt{valEnergie} & puissance de l'énergie (un entier) \\
+		\hline
+		\multicolumn{2}{|c|}{\textbf{\'Equipements}} \\
+		\hline
+		\texttt{casqueNom} & nom du casque \\
+		\texttt{casqueCouleur} & couleur du casque \\
+		\texttt{casqueProtection} & valeur de protection du casque (un entier) \\
+		\texttt{torseNom} & nom du torse \\
+		\texttt{torseCouleur} & couleur du torse \\
+		\texttt{torseProtection} & valeur de protection du torse \\
+		\texttt{brasGNom} & nom du bras gauche \\
+		\texttt{brasGCouleur} & couleur du bras gauche \\
+		\texttt{brasGProtection} & valeur de protection du bras gauche \\
+		\texttt{brasDNom} & nom du bras droit \\
+		\texttt{brasDCouleur} & couleur du bras droit \\
+		\texttt{brasDProtection} & valeur de protection du bras droit \\
+		\texttt{jambeGNom} & nom de la jambe gauche \\
+		\texttt{jambeGCouleur} & couleur de la jambe gauche \\
+		\texttt{jambeGProtection} & valeur de protection de la jambe gauche \\
+		\texttt{jambeDNom} & nom de la jambe droite \\
+		\texttt{jambeDCouleur} & couleur de la jambe droite \\
+		\texttt{jambeDProtection} & valeur de protection de la jambe droite \\
+		\hline
+		\multicolumn{2}{|c|}{\textbf{Armes}} \\
+		\hline
+		\texttt{armeGNom} & nom de l'arme de gauche \\
+		\texttt{armeGAtq} & valeur d'attaque de l'arme de gauche \\
+		\texttt{armeDNom} & nom de l'arme de droite \\
+		\texttt{armeDAtq} & valeur d'attaque de l'arme de droite \\
+		\hline
+		\multicolumn{2}{|c|}{\textbf{Image (facultatif)}} \\
+		\hline
+		\texttt{image} & nom de l'image (avec l'extention) \\
+		\hline
+	\end{tabular}
+
+
+\section{Configuration de l'application}
 
 [[[[[[[[[[[[[[[[[[[[[[[ A COMPLETER ]]]]]]]]]]]]]]]]]]]]]]]
