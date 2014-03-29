@@ -5,6 +5,7 @@ import java.util.List;
 import armor.Body;
 import armor.Energy;
 import armor.Equipement;
+import armor.Position;
 import armor.Weapon;
 
 public interface IArmor {
@@ -22,6 +23,8 @@ public interface IArmor {
 	public abstract void setImage(String image);
 
 	public abstract List<Equipement> getEquipements();
+	
+	public Equipement getEquipementAt(Position pos);
 	
 	public abstract List<Body> getBodies();
 	

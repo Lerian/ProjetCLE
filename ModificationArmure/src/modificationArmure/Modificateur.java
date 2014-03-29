@@ -51,12 +51,6 @@ public class Modificateur implements IPlugin, IModificateur{
 	}
 
 	@Override
-	public void mofifiePosEquipement(Equipement equipement, Position position) {
-		
-		equipement.setPos(position);
-	}
-
-	@Override
 	public void modifieColorBody(Body body, String couleur) {
 		
 		body.setColor(couleur);

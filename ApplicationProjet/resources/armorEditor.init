@@ -1,19 +1,29 @@
 0 : AFFICHEUR := affichageGraphique.Afficheur # AffichageGraphique/resources/afficheur.init
 1 : CREATEUR := creationArmureFichier.CreateurFichier # CreationArmureFichier/resources/createurFichier.init
 2 : MODIFICATEUR := modificationArmure.Modificateur # ModificationArmure/resources/modificateur.init
-3 : LOAD := IronM4nu
-4 : CREATEUR := creationArmure.Createur # CreationArmure/resources/createur.init
+3 : cree := IronM4nu
+4 : CREATEUR := creationArmure.Createur # CreationArmure/resources/createur.init
 5 : affiche := FIRST
-6 : AFFICHEUR := affichageConsole.Afficheur # AffichageConsole/resources/afficheur.init
-7 : LOAD := ArmureTest
-8 : affiche := ALL
+6 : modifie := ARMOR_NAME # FIRST # Manu 2.0
+7 : modifie := ENERGY_NAME # ARMOR # FIRST # projets
+8 : modifie := ENERGY_VALUE # HEAD # FIRST # 42
+9 : modifie := EQUIPEMENT_NAME # FIRST # 0 # NouveauNom d'équipement
+10 : modifie := BODY_COLOR # LAST # 0 # jaune
+11 : modifie := BODY_PROTECTION # ALL # 1 # 400
+12 : modifie := WEAPON_DAMAGE # 0 # 0 # 0
+13 : affiche := ALL
+#6 : AFFICHEUR := affichageConsole.Afficheur # AffichageConsole/resources/afficheur.init
+#6 : cree := ArmureTest
+#7 : affiche := ALL
 
 ########## Explications sur la syntaxe ##########
+#
 # _ chaque ligne prend la forme suivante:
 #	<num> : <cmd> := <cmd-arg-1> # <cmd-arg-2>
 #
 # _ <num> est le numéro de l'action. Les actions seront exécutées dans l'ordre croissant de leur numéro. La première a toujours le
-#		numéro 0. Le comportement n'est pas garanti si un numéro est absent ou doublé.
+#		numéro 0. Le comportement n'est pas garanti si un numéro est absent ou doublé (bien que seule la dernière valeur semble
+#		être considérée dans ce cas).
 # _ : indique le début de l'action. Peut être remplacé par un = sans changer le comportement.
 # _ <cmd> est la commande a exécuter (les différentes valeurs possibles sont listées ci-dessous).
 # _ := indique le début du/des argument(s) de la commande. Il doit être présent même si la commande ne prend pas d'agument.
@@ -21,7 +31,19 @@
 #		commande). Ils ne doivent pas contenir le caractère #, ni la suite de caractères :=
 # _ # sépare les arguments entre eux.
 #
+########## Informations et précautions à prendre ##########
+#
+# _ tous les séparateurs (:= # :) peuvent être entourés d'autant de caractère d'espacement que souhaité. Seuls les caractères
+#		d'espacement classiques sont acceptés (espace, tabulation), il faut être prudent quand on copie/colle du texte depuis
+#		une source externe (supprimer les espaces permet d'éviter tout problème).
+# _ aucune vérification n'est faite sur les indices demandés pour l'accès aux éléments (FIRST, LAST, 0, 1, ...), il faut donc être
+#		certain que l'objet recherché existe pour ne pas déclancher d'erreur (majoritairement NullPointerException).
+# _ aucune vérification n'est faite sur la validité de la syntaxe, toute faute de frappe entraine donc généralement une erreur
+#		à l'exécution.
+# _ aucune vérification n'est faite sur le nombre et la validité des arguments passés.
+#
 ########## Commandes disponibles ##########
+#
 # AFFICHEUR
 #	- charge un afficheur de données
 #	- prends 2 arguments
@@ -43,7 +65,7 @@
 #		- Le chemin relatif vers le fichier d'init du modificateur, depuis le répertoire indiqué par la valeur "homePath" du
 #			fichier d'initialisation du gestionaire de plugins.
 #
-# LOAD
+# cree
 #	- utilise le créateur de données courant pour créer des données
 #	- prends 1 argument
 #		- la chaine de caractères nécessaire au créateur de données pour créer les données voulues
@@ -55,3 +77,102 @@
 #		- LAST : affiche la dernière des armures créées
 #		- ALL : affiche toutes les armures créées
 #		- un nombre Y supérieur ou égal à 0 : affiche la Yème armure créée.
+# modifie
+#	- utilise le modificateur courant pour modifier des données
+#	- prends au moins un argument, qui détermine le nombre d'arguments supplémentaires nécessaires. Cet argument doit être un des suivants:
+#		- ARMOR_NAME : modifie le nom d'une armure
+#			- prends 2 arguments supplémentaires:
+#				- l'armure concernée, prend une des valeurs suivantes:
+#					- FIRST : la première des armures créées
+#					- LAST : la dernière des armures créées
+#					- ALL : toutes les armures créées
+#					- un nombre Y supérieur ou égal à 0 : la Yème armure créée.
+#				- Le nouveau nom à donner
+#		- ENERGY_NAME : modifie le nom d'une énergie
+#			- prends 3 arguments supplémentaires:
+#				- l'objet concerné, prends une des valeurs suivantes:
+#					- ARMOR : une armure
+#					- HEAD : l'équipement de tête d'une armure
+#					- BODY : l'équipement de torse d'une armure
+#					- RARM : l'équipement de bras droit d'une armure
+#					- LARM : l'équipement de bras gauche d'une armure
+#					- LHAND : l'équipement de main gauche d'une armure
+#					- RHAND : l'équipement de main droite d'une armure
+#					- LLEG : l'équipement de jambe gauche d'une armure
+#					- RLEG : l'équipement de jambe droite d'une armure
+#				- l'armure concernée, prend une des valeurs suivantes:
+#					- FIRST : la première des armures créées
+#					- LAST : la dernière des armures créées
+#					- ALL : toutes les armures créées
+#					- un nombre Y supérieur ou égal à 0 : la Yème armure créée.
+#				- le nouveau nom à donner
+#		- ENERGY_VALUE : modifie la valeur d'une énergie
+#			- prends 3 arguments supplémentaires:
+#				- l'objet concerné, prends une des valeurs suivantes:
+#					- ARMOR : une armure
+#					- HEAD : l'équipement de tête d'une armure
+#					- BODY : l'équipement de torse d'une armure
+#					- RARM : l'équipement de bras droit d'une armure
+#					- LARM : l'équipement de bras gauche d'une armure
+#					- LHAND : l'équipement de main gauche d'une armure
+#					- RHAND : l'équipement de main droite d'une armure
+#					- LLEG : l'équipement de jambe gauche d'une armure
+#					- RLEG : l'équipement de jambe droite d'une armure
+#				- l'armure concernée, prend une des valeurs suivantes:
+#					- FIRST : la première des armures créées
+#					- LAST : la dernière des armures créées
+#					- ALL : toutes les armures créées
+#					- un nombre Y supérieur ou égal à 0 : la Yème armure créée.
+#				- un nombre entier : la nouvelle valeur à donner.
+#		- EQUIPEMENT_NAME : modifie le nom d'un équipement
+#			- prends 3 arguments supplémentaires:
+#				- l'armure concernée, prend une des valeurs suivantes:
+#					- FIRST : la première des armures créées
+#					- LAST : la dernière des armures créées
+#					- ALL : toutes les armures créées
+#					- un nombre Y supérieur ou égal à 0 : la Yème armure créée.
+#				- un nombre entier >= 0 : l'indice de l'équipement parmis l'ensemble des
+#											équipements de l'armure concernée. L'indice d'un
+#											élément est déterminé par ordre croissant d'ajout.
+#											Les équipements d'une armure regroupent ses différentes
+#											parties et les armes.
+#				- le nouveau nom à donner.
+#		- BODY_COLOR : modifie la couleur d'une partie d'une armure
+#			- prends 3 arguments supplémentaires:
+#				- l'armure concernée, prend une des valeurs suivantes:
+#					- FIRST : la première des armures créées
+#					- LAST : la dernière des armures créées
+#					- ALL : toutes les armures créées
+#					- un nombre Y supérieur ou égal à 0 : la Yème armure créée.
+#				- un nombre entier >= 0 : l'indice de l'équipement parmis l'ensemble des
+#											parties de l'armure concernée. L'indice d'une
+#											partie est déterminé par ordre croissant d'ajout.
+#											Les parties d'une armure sont tous ses équipements, à
+#											l'exception des armes.
+#				- la nouvelle couleur à donner.
+#		- BODY_PROTECTION : modifie la protection apportée par un équipement
+#			- prends 3 arguments supplémentaires:
+#				- l'armure concernée, prend une des valeurs suivantes:
+#					- FIRST : la première des armures créées
+#					- LAST : la dernière des armures créées
+#					- ALL : toutes les armures créées
+#					- un nombre Y supérieur ou égal à 0 : la Yème armure créée.
+#				- un nombre entier >= 0 : l'indice de l'équipement parmis l'ensemble des
+#											parties de l'armure concernée. L'indice d'une
+#											partie est déterminé par ordre croissant d'ajout.
+#											Les parties d'une armure sont tous ses équipements, à
+#											l'exception des armes.
+#				- un nombre entier : la nouvelle valeur à donner.
+#		- WEAPON_DAMAGE : modifie les dégâts causés par une arme
+#			- prends 3 arguments supplémentaires:
+#				- l'armure concernée, prend une des valeurs suivantes:
+#					- FIRST : la première des armures créées
+#					- LAST : la dernière des armures créées
+#					- ALL : toutes les armures créées
+#					- un nombre Y supérieur ou égal à 0 : la Yème armure créée.
+#				- un nombre entier >= 0 : l'indice de l'arme parmis l'ensemble des
+#											armes de l'armure concernée. L'indice d'une
+#											arme est déterminé par ordre croissant d'ajout.
+#											Les armes d'une armure sont tous ses équipements, à
+#											l'exception de ses différentes parties.
+#				- un nombre entier : la nouvelle valeur à donner.

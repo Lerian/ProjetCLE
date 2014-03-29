@@ -18,7 +18,6 @@ public interface IModificateur {
 	//Modification de l'équipement (Equipement, Body, Weapon)
 	public abstract void modifieNomEquipement(Equipement equipement, String nomEquipement);
 	public abstract void modifieEnergieEquipement(Equipement equipement, Energy energie);
-	public abstract void mofifiePosEquipement(Equipement equipement, Position position); //codée mais inutile, on ne met pas un casque sur un pied
 	
 	//Modification de l'équipement du corps (Body)
 	public abstract void modifieColorBody(Body body, String couleur);

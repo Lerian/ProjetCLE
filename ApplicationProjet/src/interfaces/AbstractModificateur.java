@@ -40,12 +40,6 @@ public class AbstractModificateur implements IModificateur {
 	}
 
 	@Override
-	public void mofifiePosEquipement(Equipement equipement, Position position) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void modifieColorBody(Body body, String couleur) {
 		// TODO Auto-generated method stub
 

@@ -100,6 +100,16 @@ public class Armor implements IArmor {
 
 		this.image = image;
 	}
+
+	@Override
+	public Equipement getEquipementAt(Position pos) {
+		for(Equipement e : getEquipements()) {
+			if(e.getPos() == pos) {
+				return e;
+			}
+		}
+		return null;
+	}
 	
 	
 	
