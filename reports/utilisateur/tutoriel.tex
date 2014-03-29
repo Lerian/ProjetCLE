@@ -26,7 +26,7 @@ Les propriétés doivent être de la forme suivante :\\
 
 Le tableau suivant décrit l'ensemble des propriétés qui doivent être présentes dans le fichier texte de description de l'armure :\\
 
-   \centering
+\begin{center} 
 	\begin{tabular}{|c|l|} 
 		\hline
 		\multicolumn{2}{|c|}{\textbf{Armure globale}} \\
@@ -45,34 +45,40 @@ Le tableau suivant décrit l'ensemble des propriétés qui doivent être présen
 		\texttt{casqueProtection} & valeur de protection du casque (un entier) \\
 		\texttt{torseNom} & nom du torse \\
 		\texttt{torseCouleur} & couleur du torse \\
-		\texttt{torseProtection} & valeur de protection du torse \\
+		\texttt{torseProtection} & valeur de protection du torse (un entier) \\
 		\texttt{brasGNom} & nom du bras gauche \\
 		\texttt{brasGCouleur} & couleur du bras gauche \\
-		\texttt{brasGProtection} & valeur de protection du bras gauche \\
+		\texttt{brasGProtection} & valeur de protection du bras gauche (un entier) \\
 		\texttt{brasDNom} & nom du bras droit \\
 		\texttt{brasDCouleur} & couleur du bras droit \\
-		\texttt{brasDProtection} & valeur de protection du bras droit \\
+		\texttt{brasDProtection} & valeur de protection du bras droit (un entier) \\
 		\texttt{jambeGNom} & nom de la jambe gauche \\
 		\texttt{jambeGCouleur} & couleur de la jambe gauche \\
-		\texttt{jambeGProtection} & valeur de protection de la jambe gauche \\
+		\texttt{jambeGProtection} & valeur de protection de la jambe gauche (un entier) \\
 		\texttt{jambeDNom} & nom de la jambe droite \\
 		\texttt{jambeDCouleur} & couleur de la jambe droite \\
-		\texttt{jambeDProtection} & valeur de protection de la jambe droite \\
+		\texttt{jambeDProtection} & valeur de protection de la jambe droite (un entier) \\
 		\hline
 		\multicolumn{2}{|c|}{\textbf{Armes}} \\
 		\hline
 		\texttt{armeGNom} & nom de l'arme de gauche \\
-		\texttt{armeGAtq} & valeur d'attaque de l'arme de gauche \\
+		\texttt{armeGAtq} & valeur d'attaque de l'arme de gauche (un entier) \\
 		\texttt{armeDNom} & nom de l'arme de droite \\
-		\texttt{armeDAtq} & valeur d'attaque de l'arme de droite \\
+		\texttt{armeDAtq} & valeur d'attaque de l'arme de droite (un entier) \\
 		\hline
 		\multicolumn{2}{|c|}{\textbf{Image (facultatif)}} \\
 		\hline
 		\texttt{image} & nom de l'image (avec l'extention) \\
 		\hline
 	\end{tabular}
+\end{center}
 
+\vspace{1.0cm}
 
 \section{Configuration de l'application}
 
-[[[[[[[[[[[[[[[[[[[[[[[ A COMPLETER ]]]]]]]]]]]]]]]]]]]]]]]
+	La configuration de l'application se fait par l'intermédiaire d'un fichier : \texttt{armorEditor.init} localisé dans le projet armorEditor/resources. Ce fichier contient une liste d'instructions, ainsi que toutes les explications nécéssaires pour l'utiliser.\\
+
+	L'exécution du projet peut se faire par l'intermédiaire d'Eclipse, en exécutant le fichier \texttt{PluginsPlatform.java} situé dans le dossier GestionnairePlugins/src/main.\\
+
+	[[[[[[[[[[[[[[[[[[[[[[[ A COMPLETER ???????? ]]]]]]]]]]]]]]]]]]]]]]]

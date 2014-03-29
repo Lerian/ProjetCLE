@@ -5,4 +5,40 @@
 %%%%% Cahier des charges %%%%%
 \section{Cahier des charges}
 
-%%%%% Organisation %%%%%
+Dans le cadre du cours de \textit{Conception de logiciels extensibles}, les étudiants du Master 1 \textsc{Alma} avaient pour objectif de concevoir un logiciel extensible, ainsi que quelques plugins agissant sur des données quelconques. Les fonctionnalités du logiciel ainsi que celles des plugins étaient libres de choix, cependant il fallait qu'elles permettent de créer, d'afficher et de modifier des données.\\
+
+Pour répondre à ce cahier des charges, nous avons créé l'\textsc{\'Editeur d'Armure}, un logiciel de gestion d'armures de protection/combat(comme celle d'Iron Man). Nous avons également créé quelques plugins qui permettent de créer, de modifier et d'afficher des armures de plusieurs façons différentes :
+\begin{itemize}
+	\item création d'armure automatique;
+	\item création d'armure par fichier texte;
+	\item modification d'armure;
+	\item affichage console d'une armure;
+	\item affichage graphique d'une armure.
+\end{itemize}
+
+
+%%%%% Organisation du projet %%%%%
+\section{Organisation du projet}
+
+Ce projet, réalisé par trois étudiants, c'est étalé sur environ 3 mois de programmation. Pour ce faire, le travail a été divisé en plusieurs parties :
+\begin{itemize}
+	\item l'imagination/la conception du projet;
+	\item la création de la base ArmorEditor;
+	\item la mise en place du pluginManager;
+	\item la production des premiers plugins : CreationArmure et AffichageConsole;
+	\item la mise en place du plugin pour l'interface graphique;
+	\item la création des autres plugin de manipulation de données;
+	\item le refactoring;
+	\item l'optimisation de l'application.
+\end{itemize}
+\vspace{0.5cm}
+
+%\includegraphics[width=0.45\textwidth]{../figures/logoUN.png}
+
+Pour que la programmation soit optilisée, chaque étudiant s'est spécialisé dans une partie du code :
+\begin{itemize}
+	\item Quentin : plugin d'affichage graphique;
+	\item Coraline : plugins d'affichages et de manipulations des données;  
+	\item Vincent : coeur de l'application (pluginManager, fichiers de configuration, ...) et corrections des différentes parties du projet.
+
+\end{itemize}
