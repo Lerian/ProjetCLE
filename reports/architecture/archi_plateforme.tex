@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% DOC ARCHITECTURE : ARCHITECTURE DE LA PLATEFORME %%%%%
+%%%%% DOC ARCHITECTURE : ARCHITECTURE DE LA PLATEFORME 		   %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 La plateforme à plugins, fournie dans le projet Eclipse \texttt{GestionnairePlugin}, s'articule autour de 3 packages, dont le contenu sera détailé dans les parties suivantes.
@@ -12,7 +12,7 @@ Ce package contient uniquement des interfaces, utilisées par d'autres projets s
 
 \begin{itemize}
 	\item \texttt{interfaces.IPlugin} : Cette interface permet à la plateforme d'identifier une classe Java comme un plugin valide. Elle est destinée à être implémentée par les plugins basiques, ne nécessitant pas le chargement d'autres plugins pour fonctionner. Une fois implémentée, elle impose des méthodes, permettant à la plateforme d'exécuter le plugin ou de récupérer son type. Elles lui permettent aussi de transmettre un objet, contenant les informations trouvées dans le fichier de configuration, donné lors de la demande de chargement du plugin.
-	\item \texttt{interfaces.IComplexPlugin} : Cette interface, qui étand l'interface \texttt{interfaces.IPlugin} précédemment décrite, est destinée à être implémentée par les plugins complexes ayant eux-même besoin de charger d'autres plugins pour fonctionner. En plus des méthodes d'\texttt{interfaces.IPlugin}, elle impose une méthode qui permet à la classe gérant la création des plugins, de transmettre son instance aux plugins complexes créés. Ainsi, ces plugins seront en mesure de faire appel au gestionnaire de plugins pour charger tout ce dont ils ont besoin pour s'exécuter.
+	\item \texttt{interfaces.IComplexPlugin} : Cette interface, qui étend l'interface \texttt{interfaces.IPlugin} précédemment décrite, est destinée à être implémentée par les plugins complexes ayant eux-même besoin de charger d'autres plugins pour fonctionner. En plus des méthodes d'\texttt{interfaces.IPlugin}, elle impose une méthode qui permet à la classe gérant la création des plugins, de transmettre son instance aux plugins complexes créés. Ainsi, ces plugins seront en mesure de faire appel au gestionnaire de plugins pour charger tout ce dont ils ont besoin pour s'exécuter.
 	\item \texttt{interfaces.IPluginManager} :  Cette interface permet d'identifier une classe comme étant un gestionnaire de plugins. Utilisée par les plugins complexes pour demander le chargement des plugins dont ils ont besoin, elle impose pour ce faire 2 méthodes. L'une permet de demander un plugin précis, en donnant le nom de la classe Java associée et le chemin vers son fichier d'initialisation. L'autre permet de demander le chargement d'un plugin aléatoire d'un type donné.
 \end{itemize}
 
@@ -20,7 +20,7 @@ Ce package contient uniquement des interfaces, utilisées par d'autres projets s
 %%%%% Package main %%%%%
 \section{Package \texttt{main}}
 
-Ce package est composé d'une unique classe Java, \texttt{main.PluginsPlatform}. Cette classe contient la méthode \texttt{main} à exécuter pour démarrer la plateforme, qui va créer une instance de la classe \texttt{pluginManager.PluginManager}, qui constitue le coeur de la plateforme.
+Ce package est composé d'une unique classe Java, \texttt{main.PluginsPlatform}. Cette classe contient la méthode \texttt{main} à exécuter pour démarrer la plateforme, qui va créer une instance de la classe \texttt{pluginManager.PluginManager}, qui constitue le c\oe{}ur de la plateforme.
 
 
 %%%%% Package pluginManager %%%%%
@@ -31,7 +31,9 @@ Ce package contient la classe \texttt{pluginManager.PluginManager}, qui est la c
 Ce fichier est une suite de paires \textit{clef/valeur}, destinées à être récupérées par une instance de \texttt{java.util.Properties}. Afin d'avoir un fonctionnement correct de la plateforme, les 3 clefs suivantes doivent avoir une valeur:\\
 
 \begin{itemize}
-	\item loadAtStart : Contient le nom complet des plugins devant être chargés au lancement de la plateforme. Dans notre cas, il s'agit de l'éditeur d'armure.
-	\item homePath : Contient le chemin relatif depuis le répertoire \texttt{\$home} de la machine exécutant la plateforme vers un répertoire regroupant tous les plugins susceptibles d'être demandés lors de l'exécution de la plateforme. Les sous-dossiers étant pris en compte, tout comme les liens relatifs, il n'est pas nécessaire de \\
-	!!!!!!!!!!!!!!!!!!!! A REFORMULER, erreur dans l'explication (homePath/initPath) et il manque une clef!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	\item \texttt{loadAtStart} : Contient le nom complet des plugins devant être chargés au lancement de la plateforme. Dans notre cas, il s'agit de l'éditeur d'armure.
+	\item \texttt{homePath} : Contient le chemin commun à tous les fichiers qui devront être chargés lors de la suite de l'exécution de la plateforme. Ces fichiers regroupent aussi bien les \texttt{.class} devant être instanciés que les fichiers de configuration des différents plugins utilisés. Ce chemin peut être absolu, ou relatif au répertoire \texttt{\$home} de la machine courante. Si plusieurs valeurs sont données, leur existance sera vérifiée dans l'ordre indiqué, et seule la dernière valide sera considérée.
+	\item \texttt{binPaths} : Contient la liste des chemins vers les dossiers contenant les fichiers \texttt{.class} des plugins susceptibles d'être utilisés lors de l'exécution de la plateforme. Ces chemins sont relatifs au répertoire indiqué par la valeur de la clef \texttt{homePath}.\\
 \end{itemize}
+
+Le fichier contient ensuite une paire \textit{clef/valeur} pour chaque valeur de la clef \texttt{loadAtStart}. Ces paires ont pour clef la valeur correspondante de la clef \texttt{loadAtStart}, et pour valeur le chemin relatif (depuis le répertoire indiqué par la valeur de \texttt{homePath}) vers le fichier d'initialisation associé à la classe en question.
