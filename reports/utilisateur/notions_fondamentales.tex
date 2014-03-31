@@ -19,9 +19,29 @@ Le code source de l’application est disponible sur un dépôt Git hébergé pa
 
 L'\textsc{\'Editeur d'Armure} est un logiciel conçus en \texttt{Java} 7. Ayant été développé avec l'IDE Eclipse, la façon la plus simple de l'exécuter reste d'importer les projets avec Eclipse.\\
 
+Le projet contenant le gestionnaire de plugins étant par défaut configuré pour exécuter l'éditeur d'armure, il n'est pas nécessaire de modifier quoi que ce soit dans sa configuration. En revanche, si le chemin menant au dossier \textit{ProjetCLE} récupéré n'est pas \textit{\$home/workspace/}, il sera nécessaire de modifier la valeur de la clef \texttt{homePath} du fichier \textit{ProjetCLE/GestionnairePlugins/resources/init} afin de lui ajouter le bon chemin. Une description plus poussée du contenu de ce fichier est disponible dans le rapport sur l'architecture de la plateforme.
+
 Une fois tous les projets importés, il faut indiquer à l'éditeur d'armure les tâches qu'il doit effectuer. Ceci peut se faire de deux façons différentes, qui sont les suivantes:\\
 
 \begin{itemize}
 	\item En modifiant le code de la méthode \texttt{public void run()} de la classe \texttt{ArmorEditor}.
-	\item En modifiant le fichier de configuration de l'éditeur d'armure. 
+	\item En modifiant le fichier de configuration de l'éditeur d'armure.\\
 \end{itemize}
+
+Ce fichier de configuration est (par défaut) le fichier \textit{ProjetCLE/ApplicationProjet/resources/armorEditor.init}. Il permet de décrire les actions à effectuer par l'éditeur d'armure, ainsi que l'ordre dans lequel elles doivent être réalisées. La syntaxe utilisée pour décrire ces actions est une succession de lignes de la forme suivante:\\
+
+\begin{tabular}{|>{\columncolor{lightgray}}p{11.5cm}|}
+	\hline
+	\texttt{<num> : <cmd> := <cmd-arg-1> # <cmd-arg-2>}\\
+	\hline
+\end{tabular}\\
+
+avec:\\
+
+\begin{itemize}
+	\item <num> : un entier supérieur ou égal à 0, indique l'ordre dans lequel les actions sont effectuées. La première action a pour numéro 0, et aucun numéro ne doit être manquant, sous peine de voir les numéros suivants ne pas être exécutés. Si un numéro est présent plusieurs fois, seule la dernière sera exécutée.
+	\item <cmd> : une commande a exécuter. Permet d'indiquer si l'on veut charger un plugin ou appeler la méthode d'un plugin.
+	\item <cmd-arg-i> : un argument pour la commande de la ligne. Chaque commande demande des arguments qui lui sont spécifiques.\\
+\end{itemize}
+
+Plus d'informations sur les commandes disponibles et les arguments demandés sont présentes dans le fichier \textit{ProjetCLE/ApplicationProjet/resources/armorEditor.init}.
