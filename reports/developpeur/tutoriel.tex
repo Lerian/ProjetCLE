@@ -9,50 +9,45 @@ Pour créer un nouveau plugin il est conseillé d'utilisé l'IDE Eclipse et d'y 
 	\hline
 \end{tabular}\\
 
-Ou en passant par le plugin git sous eclipse.
-\vspace{0.5cm}
+Ou en passant par le plugin git sous eclipse.\\
 
-Une fois les projets correctements importé, vous pouvez commencé la création de votre plugin.
-\vspace{0.5cm}
+Une fois les projets correctements importé, vous pouvez commencé la création de votre plugin.\\
 
-Pour commencé, créez un nouveau projet java.
-\vspace{0.5cm}
+Pour commencé, créez un nouveau projet java.\\
 
 Créez ensuite une classe qui sera votre classe principal.
-Cette classe devra implémenter l'interface IPlugin du projet GestionnairePlugins.
-\vspace{0.5cm}
+Cette classe devra implémenter l'interface IPlugin du projet GestionnairePlugins.\\
 
 Si vous souhaitez creez un plugin pour le logiciel d'édition d'armure, vous devez choisir le type de plugin à creez :
 \begin{itemize}
     \item Créateur : implémenter l'interface ICreateur du projet ArmorEditor.
     \item Modificateur : implémenter l'interface IModificateur du projet ArmorEditor.
-    \item Afficheur : implémenter l'interface IAfficheur du projet ArmorEditor.
+    \item Afficheur : implémenter l'interface IAfficheur du projet ArmorEditor.\\
 \end{itemize}
-\vspace{0.5cm}
 
-Si des erreurs apparaisse ajouter les projets GestionnairePlugins et ArmorEditor à votre build path.
-\vspace{0.5cm}
+Si des erreurs apparaisse ajouter les projets GestionnairePlugins et ArmorEditor à votre build path.\\
 
-Vous pouvez maintenant créer votre plugin en implémentant les méthodes des interfaces.
-\vspace{0.5cm}
+Vous pouvez maintenant créer votre plugin en implémentant les méthodes des interfaces.\\
 
 La méthode run est executé lors de l'ajout de votre plugin au lancement de la plateforme.
 
-La méthode type doit retourné le type du plugin qui est à définir, pour l'éditeur d'armure, il existe déjà 4 types défini dans l'enum PluginTypes : CREATEUR, AFFICHEUR, MODIFICATEUR et MAIN.
+La méthode type doit retourné le type du plugin. Pour l'éditeur d'armure, il existe déjà 4 types défini dans l'enum PluginTypes : CREATEUR, AFFICHEUR, MODIFICATEUR et MAIN. Vous pouvez également définir une nouvelle valeur.
 
-La méthode receiveProperties fournie un objet Properties qui contient : "pathToHome" qui retourne sous forme de string le chemin d'accès vers le dossier dans lequel est contenut le projet GestionnairePlugins. Mais aussi "pathToInit" qui retourne sous forme de string le chemin d'accès vers le fichier .init de votre projet qui est à créer. Dans ce fichier.init vous pouvez inclure toute les informations que vous désirez récupérer dans votre code via l'objet Properties.
-\vspace{0.5cm}
+La méthode receiveProperties fournie un objet Properties qui contient : 
+\begin{itemize}
+    \item "pathToHome" qui retourne sous forme de string le chemin d'accès vers le dossier dans lequel est contenut le projet GestionnairePlugins.
+    \item Mais aussi "pathToInit" qui retourne sous forme de string le chemin d'accès vers le fichier .init de votre projet qui est à créer.
+    \item Ansi que les informations que vous pouvez être amené à sauvegardé dans le fichier .init de votre projet.\\
+\end{itemize}
 
 En ce qui concerne le programme d'édition d'armure, si vous souhaitez créer un afficheur, vous devez mettre le code principal de votre affichage dans la méthode affiche().
 
 Pour le modificateur vous devez implementer les différentes méthodes qui permettents de changé les valeurs des armes et armures.
 
-Et enfin pour le créateur, vous devez construire votre armure dans la méthode cree().
-\vspace{0.5cm}
+Et enfin pour le créateur, vous devez construire votre armure dans la méthode cree().\\
 
 Pour que votre plugin soit executé au démarage de la plateforme, vous devez indiquez la classe principal de votre plugin dans le champs loadAtStart.
 
-Par contre si vous souhaitez construire un nouveau composant pour l'éditeur d'armure, vous devez remplir le fichier armorEditor.init en suivant la syntaxe décrite pour que votre plugin puisse être utilisé par le programme d'édition d'armure.
-\vspace{0.5cm}
+Par contre si vous souhaitez construire un nouveau composant pour l'éditeur d'armure, vous devez remplir le fichier armorEditor.init en suivant la syntaxe décrite pour que votre plugin puisse être utilisé par le programme d'édition d'armure.\\
 
 Voila vous avez créer votre plugin, félicitation !
