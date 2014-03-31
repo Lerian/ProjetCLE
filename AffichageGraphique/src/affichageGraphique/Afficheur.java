@@ -162,13 +162,11 @@ public class Afficheur implements IPlugin, IAfficheur {
 
 	@Override
 	public String type() {
-		// TODO Auto-generated method stub
 		return PluginTypes.AFFICHEUR.toString();
 	}
 
 	@Override
 	public void receiveProperties(Properties prop) {
-		// TODO Auto-generated method stub
 		pathI = prop.getProperty("pathToInit");
 		propI = prop;
 	}

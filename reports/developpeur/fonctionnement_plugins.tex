@@ -3,4 +3,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-L'\textsc{\'Editeur d'Armure} est un logiciel composé d'un gestionnaire de plugin et de plusieurs plugins.
+L'\textsc{\'Editeur d'Armure} est un logiciel composé d'un gestionnaire de plugins et de plusieurs plugins. \\
+
+
+\section{GestionnairePlugins et ApplicationProjet}
+
+Les projets GestionnairePlugins et ApplicationProjet sont la base de logiciel. Le gestionnaire de plugin est une application contenant la fonction \texttt{main.java} et le pluginManager. Il permet donc de lancer l'application, et aussi de charger des plugins. \\
+
+ApplicationProjet, quant à lui, est le plugin initial du logiciel. Il contient les classes de l'armure, la classe de l'ArmorEditor, et les interfaces utiles pour toute l'application (afficheur, modificateur...).
+
+
+\section{Plugins d'affichage}
+
+Les armures créées dans l'\textsc{\'Editeur d'Armure} peuvent être affichées de deux façons différentes. Soit leur description apparait dans un fichier texte, soit dans une fenêtre graphique.\\
+
+Le plugin \textsc{AffichageConsole} utilise simplement la methode \texttt{toString} sur l'instance de l'armure, et affiche les informations recueillies dans la console d'Eclipse. Le plugin \textsc{AffichageGraphique}, plus complexe, annalyse les données d'une armure pour les afficher proprement dans une fenêtre.
+
+
+\section{Plugins de création}
+
+La création d'une armure peut également se faire de deux façons différentes. Le plugin \textsc{CreationArmure} permet d'instancier une armure de base (décrite directement dans le code). Le plugin \textsc{CreationArmureFichier} prend un fichier texte (\texttt{.txt}) en paramêtre, et récupére les propriétés décrites dans ce fichier pour instancier une armure.
+
+
+\section{Plugin de modification}

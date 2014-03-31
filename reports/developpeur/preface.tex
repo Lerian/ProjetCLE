@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% DOC DEVELOPPEUR : INFORMATIONS GENERALES %%%%%
+%%%%% DOC DEVELOPPEUR : PREFACE %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 L'\textsc{\'Editeur d'Armure} est un logiciel obéissant à un scénario composé par les étudiants du Master 1 \textsc{Alma} : un utilisateur quelconque souhaîte créer ou éditer des données, décrivant une armure de protection/combat (telle celle d'Iron Man).\\
@@ -22,12 +22,12 @@ L'\textsc{\'Editeur d'Armure} est un logiciel conçus en \texttt{Java} 7 avec l'
 
 \noindent{Le code source est divisé en plusieurs projets :}
 \begin{itemize}
-	\item Application projet : plugin principal
-	\item GestionnairePlugins : gestionnaire de plugin indispensable au bon fonctionnement du logiciel.
-	\item CreationArmure : plugin de création
-	\item CreationArmureFichier : plugin de création
-	\item ModificationArmure : plugin de modification de données
-	\item AffichageConsole : plugin d'affichage
-	\item AffichageGraphique : plugin d'affichage
+	\item Application projet : plugin principal qui contient le plugin ArmorEditor;
+	\item GestionnairePlugins : gestionnaire de plugin indispensable au bon fonctionnement du logiciel;
+	\item CreationArmure : plugin de création automatique d'armure;
+	\item CreationArmureFichier : plugin de création d'armure, à partir d'un fichier texte;
+	\item ModificationArmure : plugin qui contient un ensemble de méthodes, permettant de modifier les données d'une armure;
+	\item AffichageConsole : plugin d'affichage textuel dans la console;
+	\item AffichageGraphique : plugin d'affichage graphique.
 \end{itemize}
 
