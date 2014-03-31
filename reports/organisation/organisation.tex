@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\documentclass[a4paper]{report}
+\documentclass[a4paper]{article}
 
 
 %%%%% Packages %%%%%
@@ -36,26 +36,40 @@
 \input{./page_de_garde.tex}
 
 
-%%%%% Sommaire %%%%%
-\tableofcontents
+%%%%% Cahier des charges %%%%%
+\section{Cahier des charges}
 
-	Conclu\\
-		ce qu'il manque (éditer les données)\\
-		(création par l'interface graphique)
+Dans le cadre du cours de \textit{Conception de logiciels extensibles}, les étudiants du Master 1 \textsc{Alma} avaient pour objectif de concevoir un logiciel extensible, ainsi que quelques plugins agissant sur des données quelconques. Les fonctionnalités du logiciel ainsi que celles des plugins étaient libres de choix, cependant il fallait qu'elles permettent de créer, d'afficher et de modifier des données.\\
 
-	
-%%%%% Introduction %%%%%
-\chapter{Introduction}
-\input{./introduction.tex}
+Ce rapport a donc été écrit dans le but d'expliquer comment notre groupe de travail s'est organisé pour la conception du projet \textsc{\'Editeur d'Armure}. Il présente les différentes étapes de notre travail, depuis l'imagination, jusqu'à la réalisation de notre projet, mais aussi la répartitions des tâches entre les étudiants.
 
 
-%%%%% Organisation %%%%%
-\chapter{Organisation}
-\input{./organisation_part.tex}
-	
-%%%%% Conclusion %%%%%
-\chapter{Conclusion}
-%\input{./conclusion.tex}
+
+%%%%% Organisation du projet %%%%%
+\section{Organisation du projet}
+
+Ce projet s'est étalé sur environ 3 mois de programmation. Pour se faire, le travail a été divisé en plusieurs parties :
+\begin{itemize}
+	\item la conception du projet;
+	\item la création de la base ArmorEditor;
+	\item la mise en place du pluginManager;
+	\item la production des premiers plugins : \texttt{CreationArmure} et \texttt{AffichageConsole};
+	\item la mise en place du plugin pour l'interface graphique : \texttt{AffichageGraphique};
+	\item la création d'autres plugins de manipulation de données : \texttt{ModificationArmure} et \texttt{CreationArmureFichier};
+	\item le refactoring;
+\end{itemize}
+\vspace{0.5cm}
+
+%\includegraphics[width=0.45\textwidth]{../figures/gantt.png}
+Le diagramme de Gantt ci-dessus représente les différentes étapes de notre travail. Bien que le pluginManager et l'ArmorEditor soient véritablement la base de notre projet, nous avons passé beaucoup plus de temps à developper ces parties que les autres. Ceci est principalement du au fait que nous avons amélioré ces parties, en fonction des plugins, et des fonctionnalités que nous souhaîtions développer.
+
+Pour que la programmation soit optimisée, chaque étudiant s'est spécialisé dans une partie du code :
+\begin{itemize}
+	\item Quentin : plugin d'affichage graphique;
+	\item Coraline : plugins d'affichages et de manipulations des données;  
+	\item Vincent : coeur de l'application (pluginManager, fichiers de configuration, \dots) et corrections des différentes parties du projet.
+
+\end{itemize}
 
 
 \end{document}
