@@ -12,6 +12,7 @@
 11 : modifie := BODY_PROTECTION # ALL # 1 # 400
 12 : modifie := WEAPON_DAMAGE # 0 # 0 # 0
 13 : affiche := ALL
+
 #6 : AFFICHEUR := affichageConsole.Afficheur # AffichageConsole/resources/afficheur.init
 #6 : cree := ArmureTest
 #7 : affiche := ALL
@@ -33,6 +34,7 @@
 #
 ########## Informations et précautions à prendre ##########
 #
+# _ si le premier caractère d'une ligne est # , celle-ci est considérée comme un commentaire et n'est pas prise en compte
 # _ tous les séparateurs (:= # :) peuvent être entourés d'autant de caractère d'espacement que souhaité. Seuls les caractères
 #		d'espacement classiques sont acceptés (espace, tabulation), il faut être prudent quand on copie/colle du texte depuis
 #		une source externe (supprimer les espaces permet d'éviter tout problème).
@@ -42,6 +44,17 @@
 #		à l'exécution.
 # _ aucune vérification n'est faite sur le nombre et la validité des arguments passés.
 #
+########## Classes disponibles ##########
+#
+# afficheur:
+#	affichageGraphique.Afficheur				fichier d'initialisation: AffichageGraphique/resources/afficheur.init
+#	affichageConsole.Afficheur					fichier d'initialisation: AffichageConsole/resources/afficheur.init
+# createur:
+#	creationArmureFichier.CreateurFichier		fichier d'initialisation: CreationArmureFichier/resources/createurFichier.init
+#	creationArmure.Createur						fichier d'initialisation: CreationArmure/resources/createur.init
+# modificateur:
+#	modificationArmure.Modificateur				fichier d'initialisation: ModificationArmure/resources/modificateur.init
+#	
 ########## Commandes disponibles ##########
 #
 # AFFICHEUR

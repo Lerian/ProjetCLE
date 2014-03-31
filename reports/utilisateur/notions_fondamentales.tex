@@ -3,14 +3,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-L'\textsc{\'Editeur d'Armure} est un logiciel obéissant à un scénario composé par des étudiants du Master 1 \textsc{Alma} : un utilisateur quelconque souhaîte créer ou éditer des données, décrivant une armure de protection/combat (telle celle d'Iron Man).\\
-
-Ce projet, à but pédagogique, a été conçu afin de permettre aux étudiants de parfaire leurs connaissances en \textit{Conception de logiciels extensibles} en créant leur propre architecture à plugins. 
+L'\textsc{\'Editeur d'Armure} est un logiciel créé par des étudiants du Master 1 \textsc{Alma}. il permet de créer des armures composées de différentes pièces, puis de les afficher et de les modifier. Bien que chacun puisse créer de nouveaux plugins dans le but de donner à l'éditeur d'armure le comportement souhaité, ce document aura pour but de présenter les plugins mis à disposition avec le logiciel. Couvrant toutes les fonctionnalités possibles (création, affichage et modification d'armure), ces plugins permettent à chacun d'utiliser l'éditeur d'armure sans avoir besoin de créer de code.
 
 \section{Récupération de l'application}
 
-Le code source de l’application est disponible sur un dépôt Git hébergé par le site GitHub. Pour le moment, le code source peut être visualisé et télécharger par tout le monde. Il est possible de le récupérer, sous forme \href{https://github.com/Lerian/ProjetCLE/archive/master.zip}{d'archive}, ou directement par l'intermédiaire de Git.
-\vspace{0.5cm}\\
+Le code source de l’application est disponible sur un dépôt Git hébergé par le site GitHub (\href{https://github.com/lerian/ProjetCLE}{github.com/lerian/ProjetCLE}). Le code source peut être visualisé et téléchargé par tout le monde. Il est possible de le récupérer, sous forme \href{https://github.com/Lerian/ProjetCLE/archive/master.zip}{d'archive} ou directement par l'intermédiaire de Git:\\
+
 \begin{tabular}{|>{\columncolor{lightgray}}p{11.5cm}|}
 	\hline
 	\texttt{git clone https://github.com/Lerian/ProjetCLE.git}\\
@@ -19,6 +17,11 @@ Le code source de l’application est disponible sur un dépôt Git hébergé pa
 
 \section{Importation et exécution}
 
-L'\textsc{\'Editeur d'Armure} est un logiciel conçus en \texttt{Java} 7 avec l'IDE Eclipse. Pour lancé le logiciel, il est conseillé de lancer l'exécution à partir de l'IDE Eclipse\\
+L'\textsc{\'Editeur d'Armure} est un logiciel conçus en \texttt{Java} 7. Ayant été développé avec l'IDE Eclipse, la façon la plus simple de l'exécuter reste d'importer les projets avec Eclipse.\\
 
-[[[[[[[[[[[[[[[[[[[[[[[ A COMPLETER ]]]]]]]]]]]]]]]]]]]]]]]
+Une fois tous les projets importés, il faut indiquer à l'éditeur d'armure les tâches qu'il doit effectuer. Ceci peut se faire de deux façons différentes, qui sont les suivantes:\\
+
+\begin{itemize}
+	\item En modifiant le code de la méthode \texttt{public void run()} de la classe \texttt{ArmorEditor}.
+	\item En modifiant le fichier de configuration de l'éditeur d'armure. 
+\end{itemize}
