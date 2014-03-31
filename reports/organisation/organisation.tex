@@ -1,0 +1,63 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% DOC ARCHITECTURE : MAIN %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[a4paper]{report}
+
+
+%%%%% Packages %%%%%
+
+%%%%% Langage %%%%%
+\usepackage[frenchb]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%%%%% Graphique %%%%%
+\usepackage{graphicx}
+\usepackage{wrapfig}
+%%%%% Mise en page %%%%%
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{colortbl}
+\usepackage{titlesec}
+
+
+
+%%%%% Macros %%%%
+\input{./macros.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% DOCUMENT %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%% Page de garde %%%%%
+\input{./page_de_garde.tex}
+
+
+%%%%% Sommaire %%%%%
+\tableofcontents
+
+	Conclu\\
+		ce qu'il manque (éditer les données)\\
+		(création par l'interface graphique)
+
+	
+%%%%% Introduction %%%%%
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Introduction}
+\input{./introduction.tex}
+
+
+%%%%% Organisation %%%%%
+\chapter{Organisation}
+%\input{./organisation.tex}
+	
+%%%%% Conclusion %%%%%
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Conclusion}
+%\input{./conclusion.tex}
+
+
+\end{document}
