@@ -3,26 +3,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-L'\textsc{\'Editeur d'Armure} est un logiciel composé d'un gestionnaire de plugins et de plusieurs plugins. \\
+L'\textsc{\'Editeur d'Armure} est un plugin qui se base sur un gestionnaire de plugins et sur plusieurs autres plugins pour fonctionner. \\
 
 
 \section{GestionnairePlugins et ApplicationProjet}
 
-Les projets GestionnairePlugins et ApplicationProjet sont la base de logiciel. Le gestionnaire de plugin est une application contenant la fonction \texttt{main.java} et le pluginManager. Il permet donc de lancer l'application, et aussi de charger des plugins. \\
+Le gestionnaire de plugin sert à gérer tous les plugins (y compris l'ArmorEditor). Son comportement et son architecture sont détaillés dans le document concernant l'architecture. Le gestionnaire de plugin permet de lancer l'application, et aussi de charger des plugins. \\
 
-ApplicationProjet, quant à lui, est le plugin initial du logiciel. Il contient les classes de l'armure, la classe de l'ArmorEditor, et les interfaces utiles pour toute l'application (afficheur, modificateur...).
+L'ApplicationProjet, quant à lui, est le projet principal du logiciel. Il contient le plugin ArmorEditor, les classes qui permettent de décrire une armure, et les interfaces nécéssaires à l'ArmorEditor pour communiquer avec les plugins dont il a besoin (afficheur, modificateur \dots).
 
 
 \section{Plugins d'affichage}
 
-Les armures créées dans l'\textsc{\'Editeur d'Armure} peuvent être affichées de deux façons différentes. Soit leur description apparait dans un fichier texte, soit dans une fenêtre graphique.\\
+Les plugins d'affichage regroupent tous les plugins qui implémentent l'interface \texttt{IAfficheur}. Deux d'entre eux sont fournis actuellement.\\
 
-Le plugin \textsc{AffichageConsole} utilise simplement la methode \texttt{toString} sur l'instance de l'armure, et affiche les informations recueillies dans la console d'Eclipse. Le plugin \textsc{AffichageGraphique}, plus complexe, annalyse les données d'une armure pour les afficher proprement dans une fenêtre.
+Le plugin \texttt{AffichageConsole}, qui utilise simplement la methode \texttt{toString} sur l'instance de l'armure, et qui affiche les informations recueillies dans la console utilisée pour exécuter le logiciel. Le plugin \texttt{AffichageGraphique}, plus complexe, qui annalyse les données d'une armure pour les afficher proprement dans une fenêtre.
 
 
 \section{Plugins de création}
 
-La création d'une armure peut également se faire de deux façons différentes. Le plugin \textsc{CreationArmure} permet d'instancier une armure de base (décrite directement dans le code). Le plugin \textsc{CreationArmureFichier} prend un fichier texte (\texttt{.txt}) en paramêtre, et récupére les propriétés décrites dans ce fichier pour instancier une armure.
+Les plugins de création regroupent tous les plugins qui implémentent l'interface \texttt{ICreateur}. Deux d'entre eux sont fournis actuellement.\\
+
+Le plugin \texttt{CreationArmure} permet d'instancier une armure de base (décrite directement dans le code). Le plugin \texttt{CreationArmureFichier} prend un fichier texte (\texttt{.txt}) en paramêtre, et récupére les propriétés décrites dans ce fichier pour instancier une armure. Le format du fichier texte est décrit plus précisément dans le tutoriel présent dans la documentation utilisateur.
 
 
 \section{Plugin de modification}
+
+Les plugins de modification regroupent tous les plugins qui implémentent l'interface \texttt{IModificateur}. Celui que nous avons créé contient un ensembles de méthodes capables de modifiées les propriétés d'une armure instanciée.

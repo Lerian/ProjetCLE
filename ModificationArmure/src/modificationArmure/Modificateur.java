@@ -70,7 +70,7 @@ public class Modificateur implements IPlugin, IModificateur{
 
 	@Override
 	public String type() {
-		// TODO Auto-generated method stub
+
 		return PluginTypes.MODIFICATEUR.toString();
 	}
 
